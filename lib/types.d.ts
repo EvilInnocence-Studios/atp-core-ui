@@ -2,7 +2,15 @@ import request from "superagent";
 import { Index } from "ts-functional/dist/types";
 
 export declare type IApiConfig = {
-    baseUrl: string;
+    appName: string;
+    api: {
+        baseUrl: string;
+    };
+    gallery: {
+        maxRowCount: number;
+    };
+    modules: string[];
+    menus: ItemType<MenuItemType>[];
 };
 
 export type RequestFunc = (url: string, bodyOrQuery: Record<string, any>) => request.Request;

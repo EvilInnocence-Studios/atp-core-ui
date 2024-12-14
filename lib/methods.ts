@@ -3,7 +3,7 @@ import { IApiConfig, IMethods } from "./types";
 
 const jwt = localStorage.getItem('jwt');
 const createRequest = (method: string, apiConfig:IApiConfig) => (url: string, bodyOrQuery: Record<string, any> = {}):request.Request => {
-    const req = request(method, `${apiConfig.baseUrl}${url}`).set('Authorization', `Bearer ${jwt}`).accept('application/json');
+    const req = request(method, `${apiConfig.api.baseUrl}${url}`).set('Authorization', `Bearer ${jwt}`).accept('application/json');
     return method === 'GET'
         ? req.query(bodyOrQuery)
         : req.send(bodyOrQuery);

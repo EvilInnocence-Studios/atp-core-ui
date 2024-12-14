@@ -1,6 +1,6 @@
-import { config } from "../config";
-import { apiMethods } from "./common/api/methods";
-import {apiServices} from "./common/api/services";
-export const api = apiMethods(config.api);
+import { config } from "@config";
+import { apiMethods } from "./methods";
+import { apiServices } from "./services";
+export const api = apiMethods(config);
 
 export const services = apiServices(api);
