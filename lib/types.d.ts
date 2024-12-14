@@ -16,7 +16,5 @@ export declare interface IMethods  {
     remove: RequestFunc;
 }
 
-export declare type Params = Index<string>;
 export declare type Paging = {offset:number, perPage:number};
-export declare type Query = Paging & Index<string | string[]>;
 
