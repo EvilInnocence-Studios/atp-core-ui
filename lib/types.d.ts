@@ -11,6 +11,10 @@ export declare type IApiConfig = {
     };
     modules: string[];
     menus: ItemType<MenuItemType>[];
+    routes: Array<{
+        path: string;
+        component: React.ComponentType<any>;
+    }>;
 };
 
 export type RequestFunc = (url: string, bodyOrQuery: Record<string, any>) => request.Request;
