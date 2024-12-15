@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export const useLoader = <T>() => {
+export const useLoader = () => {
     const [isLoading, setIsLoading] = useState(false);
 
     const start = () => setIsLoading(true);
