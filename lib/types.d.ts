@@ -17,7 +17,7 @@ export declare type IApiConfig = {
     }>;
 };
 
-export type RequestFunc = (url: string, bodyOrQuery: Record<string, any>) => request.Request;
+export type RequestFunc = <T = Record<string, any>>(url: string, bodyOrQuery: T) => request.Request;
 export type RequestGenerator = (method: string, apiConfig:IApiConfig) => RequestFunc;
 
 export declare interface IMethods  {
@@ -25,7 +25,7 @@ export declare interface IMethods  {
     post: RequestFunc;
     put: RequestFunc;
     patch: RequestFunc;
-    remove: RequestFunc;
+    remove: RequestFunc<undefined>;
 }
 
 export declare type Paging = {offset:number, perPage:number};

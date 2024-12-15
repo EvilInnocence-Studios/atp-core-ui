@@ -1,24 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-export const useLoader = <T>(loader: () => Promise<T>, initialValue:T, dependencies:any[] = []) => {
+export const useLoader = <T>() => {
     const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState<any>(null);
-    const [data, setData] = useState<T>(initialValue);
 
-    const load = async () => {
-        setIsLoading(true);
-        try {
-            await loader().then(setData);
-        } catch (err) {
-            setError(err);
-        } finally {
-            setIsLoading(false);
-        }
-    };
+    const start = () => setIsLoading(true);
+    const stop = () => setIsLoading(false);
 
-    useEffect(() => {
-        load();
-    }, dependencies);
-
-    return {data, isLoading, error, load};
+    return {isLoading, start, stop};
 }
