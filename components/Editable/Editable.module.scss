@@ -2,7 +2,6 @@
 
 .editable {
     min-width: 32px;
-    border: solid 1px;
     display: inline-block;
     background: none !important;
     text-align: inherit;
@@ -12,6 +11,6 @@
     margin: 0;
     border: none;
     &.hasChanges {
-        background-color: #333300 !important;
+        background-color: globals.$changed !important;
     }
 }
