@@ -17,14 +17,14 @@ export declare type IApiConfig = {
     }>;
 };
 
-export type RequestFunc = <T = Record<string, any>>(url: string, bodyOrQuery: T) => request.Request;
+export type RequestFunc = <T>(url: string, bodyOrQuery: T) => request.Request;
 export type RequestGenerator = (method: string, apiConfig:IApiConfig) => RequestFunc;
 
 export declare interface IMethods  {
-    get: RequestFunc;
-    post: RequestFunc;
-    put: RequestFunc;
-    patch: RequestFunc;
+    get: RequestFunc<Record<string, any>>;
+    post: RequestFunc<Record<string, any>>;
+    put: RequestFunc<Record<string, any>>;
+    patch: RequestFunc<Record<string, any>>;
     remove: RequestFunc<undefined>;
 }
 
