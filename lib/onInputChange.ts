@@ -1,4 +1,6 @@
 import { RadioChangeEvent } from "antd";
+import dayjs from "dayjs";
+import moment from "moment";
 import { ChangeEvent } from "react";
 import { Func } from "ts-functional/dist/types";
 
@@ -13,3 +15,16 @@ export const onRadioChange =
     (e:RadioChangeEvent) => {
         onChange(e.target.value);
     }
+
+export const onNumberChange  = (onChange:Func<number, void>) => (value:string) => {
+    const num = parseFloat(value);
+    if (!isNaN(num)) {
+        onChange(num);
+    }
+}
+
+export const onDateChange = (onChange:Func<string, void>) => (date:dayjs.Dayjs) => {
+    if (date) {
+        onChange(date.format("YYYY-MM-DD"));
+    }
+}

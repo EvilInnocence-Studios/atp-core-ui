@@ -36,6 +36,6 @@ export const EditableComponent = ({value, onChange, placeholder, textArea}:Edita
         onChange={onInputChange(setCurValue)}
         onClick={e => {e.stopPropagation();}}
         placeholder={placeholder}
-        autoSize
+        autoSize={{minRows: 1, maxRows: 100}}
     />;
 }

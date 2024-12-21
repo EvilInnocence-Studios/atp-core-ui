@@ -1,0 +1,21 @@
+@use "@styles/globals.module.scss";
+
+.label {
+    display: flex;
+    border: solid 1px globals.$brand-border;
+    border-radius: globals.$border-radius-lg;
+    padding: 0;
+    > span {
+        flex-grow: 1;
+        padding: globals.$padding-xs globals.$padding-sm;
+    }
+    > label {
+        display: inline-block;
+        padding: globals.$padding-xs globals.$padding-sm;
+        border-radius: globals.$border-radius-lg;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        border-right: solid 1px globals.$brand-border;
+        background-color: globals.$brand-bg-light;
+    }
+}
