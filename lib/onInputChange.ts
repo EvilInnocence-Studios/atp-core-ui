@@ -1,8 +1,9 @@
 import { RadioChangeEvent } from "antd";
 import dayjs from "dayjs";
-import moment from "moment";
 import { ChangeEvent } from "react";
 import { Func } from "ts-functional/dist/types";
+
+export const handle = (f:(...args:any[]) => void) => (...args:any[]) => () => f(...args);
 
 export const onInputChange =
     (onChange:Func<string, void>) => 
