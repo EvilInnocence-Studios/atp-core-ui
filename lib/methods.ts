@@ -3,7 +3,7 @@ import { IApiConfig, IMethods } from "./types";
 import { useLoggedInUser } from "@uac/lib/login/services";
 
 const createRequest = (method: string, apiConfig:IApiConfig) => (url: string, bodyOrQuery: Record<string, any> = {}):request.Request => {
-    const jwt = useLoggedInUser.getValue().loginToken;
+    const jwt = useLoggedInUser.getValue()?.loginToken || "";
     const req = request(method, `${apiConfig.api.baseUrl}${url}`).set('Authorization', `Bearer ${jwt}`).accept('application/json');
     return method === 'GET'
         ? req.query(bodyOrQuery)

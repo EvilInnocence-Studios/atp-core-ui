@@ -9,6 +9,11 @@ export declare type IApiConfig = {
     gallery: {
         maxRowCount: number;
     };
+    social: {
+        twitter: string;
+        blueSky: string;
+        instagram: string;
+    }
     modules: string[];
     menus: ItemType<MenuItemType>[];
     routes: Array<{
