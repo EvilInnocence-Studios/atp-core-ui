@@ -16,6 +16,9 @@ export declare type IApiConfig = {
     }
     modules: string[];
     menus: ItemType<MenuItemType>[];
+    paypal: {
+        clientId: string;
+    };
     routes: Array<{
         path: string;
         component: React.ComponentType<any>;
