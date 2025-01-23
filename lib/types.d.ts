@@ -18,6 +18,7 @@ export declare type IApiConfig = {
     menus: ItemType<MenuItemType>[];
     paypal: {
         clientId: string;
+        plans: Index<string>;
     };
     routes: Array<{
         path: string;
