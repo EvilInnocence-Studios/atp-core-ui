@@ -1,0 +1,13 @@
+@use "@styles/globals.module.scss";
+
+.scrollToTop {
+    color: globals.$brand-primary;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    font-size: 48px;
+    opacity: 0.25;
+    &:hover {
+        opacity: 1;
+    }
+}
