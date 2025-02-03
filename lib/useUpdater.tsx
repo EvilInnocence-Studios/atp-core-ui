@@ -20,10 +20,10 @@ export declare interface IUpdater<Entity> {
 
 export const useUpdater = <Entity extends {}>(
     entityType: string,
-    id:number,
+    id:string,
     initialEntity:Entity,
-    load:(id:number) => Promise<Entity>,
-    update:(id:number, data:Partial<Entity>) => Promise<Entity>,
+    load:(id:string) => Promise<Entity>,
+    update:(id:string, data:Partial<Entity>) => Promise<Entity>,
     saveMode: "automatic" | "manual" = "automatic",
 ):IUpdater<Entity> => {
     const dirty = useToggle(false);
