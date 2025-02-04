@@ -6,7 +6,6 @@ export declare interface IPaginator {
     defaultPageSize: number;
     pageSizeOptions: number[];
     onChange: (page: number, pageSize: number) => void;
-    showTotal: (total: number, range: [number, number]) => string;
 }
 
 export const usePaginator = ():IPaginator => {
@@ -22,8 +21,5 @@ export const usePaginator = ():IPaginator => {
             setCurrent(page);
             setPageSize(pageSize);
         },
-        // showTotal: (total: number, range: [number, number]) => {
-        //     return `${range[0]} - ${range[1]} of ${total}`;
-        // },
     };
 }
