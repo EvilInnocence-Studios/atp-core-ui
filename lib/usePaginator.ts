@@ -22,8 +22,8 @@ export const usePaginator = ():IPaginator => {
             setCurrent(page);
             setPageSize(pageSize);
         },
-        showTotal: (total: number, range: [number, number]) => {
-            return `${range[0]} - ${range[1]} of ${total}`;
-        },
+        // showTotal: (total: number, range: [number, number]) => {
+        //     return `${range[0]} - ${range[1]} of ${total}`;
+        // },
     };
 }
