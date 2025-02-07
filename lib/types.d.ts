@@ -8,6 +8,8 @@ export declare type IApiConfig = {
     };
     analytics: {
         google: string;
+        track: string;
+        debug: boolean;
     };
     gallery: {
         maxRowCount: number;
