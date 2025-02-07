@@ -6,6 +6,9 @@ export declare type IApiConfig = {
     api: {
         baseUrl: string;
     };
+    analytics: {
+        google: string;
+    };
     gallery: {
         maxRowCount: number;
     };
