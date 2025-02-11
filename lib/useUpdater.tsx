@@ -12,7 +12,7 @@ export declare interface IUpdater<Entity> {
     isLoading: boolean;
     updateString: (field: keyof Entity) => (value?: string) => void;
     updateToggle: (field: keyof Entity) => (value?: boolean) => void;
-    updateNumber: (field: keyof Entity) => (value?: number) => void;
+    updateNumber: (field: keyof Entity) => (value?: number | null) => void;
     history: IEditHistory<Entity>;
     save: () => void;
     UpdateButtons: React.FC;
@@ -43,7 +43,7 @@ export const useUpdater = <Entity extends {}>(
             .finally(loader.stop);
     }
 
-    const updateEntity = <FieldType extends any>(field:keyof Entity) => (value?:FieldType) => {
+    const updateEntity = <FieldType extends any>(field:keyof Entity) => (value?:FieldType | null) => {
         if(typeof value !== "undefined") {
             const oldEntity = history.entity;
             (oldEntity as any)[field] = value;
