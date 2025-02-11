@@ -11,3 +11,7 @@ export const handleError = pipe(getError, prop("message"), flash.error, execute)
 export const clear = (...setters:Setter<string>[]) => () => setters.forEach(setter => setter(''));
 
 export const appendTo = <T>(arr:T[]) => (item:T) => [...arr, item];
+
+export const stopProp = {
+    onClick: (e:React.MouseEvent) => e.stopPropagation(),
+}
