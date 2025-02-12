@@ -1,0 +1,15 @@
+@use "@styles/globals.module.scss";
+
+.faderElement {
+    opacity: 1;
+    transition: opacity 2s;
+    &.faderElement--active {
+        opacity: 1;
+    }
+    &.faderElement--inactive {
+        opacity: 0;
+    }
+    &.faderElement--hidden {
+        display: none;
+    }
+}
