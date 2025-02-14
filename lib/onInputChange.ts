@@ -1,4 +1,4 @@
-import { RadioChangeEvent } from "antd";
+import { CheckboxChangeEvent, RadioChangeEvent } from "antd";
 import dayjs from "dayjs";
 import { ChangeEvent } from "react";
 import { Func } from "ts-functional/dist/types";
@@ -10,6 +10,12 @@ export const onInputChange =
     (e:ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         onChange(e.currentTarget.value);
     };
+
+export const onCheckboxChange = 
+    (onChange:Func<boolean, void>) => 
+    (e:CheckboxChangeEvent) => {
+        onChange(e.target.checked);
+    }
 
 export const onRadioChange =
     (onChange:Func<string, void>) => 
