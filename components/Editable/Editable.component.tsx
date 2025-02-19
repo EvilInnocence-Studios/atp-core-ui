@@ -5,6 +5,7 @@ import { debounce } from 'lodash';
 import { useEffect, useState } from "react";
 import { EditableProps } from "./Editable";
 import styles from './Editable.module.scss';
+import { stopProp } from "@core/lib/util";
 
 export const EditableComponent = ({value, onChange, placeholder, textArea}:EditableProps) => { 
     const [curValue, setCurValue] = useState(value);
@@ -34,7 +35,7 @@ export const EditableComponent = ({value, onChange, placeholder, textArea}:Edita
         value={curValue}
         className={clsx([styles.editable, hasChanges && styles.hasChanges])}
         onChange={onInputChange(setCurValue)}
-        onClick={e => {e.stopPropagation();}}
+        {...stopProp}
         placeholder={placeholder}
         autoSize={{minRows: 1, maxRows: 100}}
     />;
