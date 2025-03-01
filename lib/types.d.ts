@@ -23,13 +23,21 @@ export declare type IApiConfig = {
     menus: ItemType<MenuItemType>[];
     paypal: {
         clientId: string;
-        plans: Index<string>;
+        plans: ISubscriptionPlan[];
     };
     routes: Array<{
         path: string;
         component: React.ComponentType<any>;
     }>;
 };
+
+export declare interface ISubscriptionPlan {
+    planId: string;
+    description: string;
+    renews: string;
+    period: number;
+    price: number;
+}
 
 export type RequestFunc = <T>(url: string, bodyOrQuery: T) => request.Request;
 export type RequestGenerator = (method: string, apiConfig:IApiConfig) => RequestFunc;
