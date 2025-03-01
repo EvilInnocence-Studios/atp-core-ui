@@ -49,7 +49,7 @@ export const useLoaderAsync = ():LoaderAsync => {
         });
     };
 
-    const loader = async (f: () => Promise<any>) => {
+    const loader = async <T>(f: () => Promise<T>) => {
         start();
         try {
             await f();
