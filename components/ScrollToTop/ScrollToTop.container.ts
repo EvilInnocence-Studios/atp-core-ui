@@ -8,10 +8,11 @@ const injectScrollToTopProps = createInjector(({}:IScrollToTopInputProps):IScrol
     const location = useLocation();
 
     const toTop = () => {
+        if (location.hash) return;
         window.scrollTo({top: 0, behavior: 'smooth'});
     }
     
-    useEffect(toTop, [location]);
+    useEffect(toTop, [location.pathname, location.search]);
     
     return {toTop};
 });
