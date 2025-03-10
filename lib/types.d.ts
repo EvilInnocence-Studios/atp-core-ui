@@ -15,6 +15,7 @@ export declare type IApiConfig = {
         maxRowCount: number;
     };
     social: {
+        facebook: string;
         twitter: string;
         blueSky: string;
         instagram: string;
