@@ -15,6 +15,7 @@ export declare interface IUpdater<Entity> {
     updateNumber: (field: keyof Entity) => (value?: number | null) => void;
     history: IEditHistory<Entity>;
     save: () => void;
+    refresh: () => void;
     UpdateButtons: React.FC;
 }
 
@@ -86,5 +87,6 @@ export const useUpdater = <Entity extends {}>(
         updateToggle: updateEntity<boolean>,
         updateNumber: updateEntity<number>,
         history, save, UpdateButtons,
+        refresh,
     };
 };
