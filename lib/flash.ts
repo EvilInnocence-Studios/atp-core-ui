@@ -1,8 +1,8 @@
 import { notification } from "antd";
 
 export const flash = {
-    success: (message:string) => () => {notification.success({message, duration: 2})},
-    error:   (message:string) => () => {notification.error(  {message, duration: 5})},
-    warn:    (message:string) => () => {notification.warning({message, duration: 3})},
-    info:    (message:string) => () => {notification.info(   {message, duration: 2})},
+    success: (message:string) => <T>(obj?:T) => {notification.success({message}); return obj;},
+    error:   (message:string) => <T>(obj?:T) => {notification.error(  {message}); return obj;},
+    warn:    (message:string) => <T>(obj?:T) => {notification.warning({message}); return obj;},
+    info:    (message:string) => <T>(obj?:T) => {notification.info(   {message}); return obj;},
 }
