@@ -1,3 +1,4 @@
+import { ISettingContainer } from "@common/lib/setting/types";
 import request from "superagent";
 import { Index } from "ts-functional/dist/types";
 
@@ -30,6 +31,7 @@ export declare type IApiConfig = {
         path: string;
         component: React.ComponentType<any>;
     }>;
+    settings: ISettingContainer;
 };
 
 export declare interface ISubscriptionPlan {
