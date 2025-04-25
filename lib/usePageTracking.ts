@@ -1,13 +1,14 @@
-import { config } from "@config";
+import { useSetting } from "@common/lib/setting/services";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import request from 'superagent';
 
 const usePageTracking = () => {
   const location = useLocation();
+  const debug = useSetting("analyticsDebug");
+  const trackingUrl = useSetting("trackingUrl");
 
   useEffect(() => {
-    console.log(`Page view: ${location.pathname + location.search}`);
     const navigator = window.navigator;
     const screen = window.screen;
     
@@ -29,10 +30,11 @@ const usePageTracking = () => {
         screenPixelDepth: screen.pixelDepth,
     };
     
-    if(config().analytics.debug) {
-        console.log(`Custom Track: ${info.url}`); return;
+    if(debug) {
+      console.log(`Page view: ${location.pathname + location.search}`);
+      console.log(`Custom Tracking: ${info.url}`); return;
     } else {
-        request.post(config().analytics.track)
+        request.post(trackingUrl)
             .send(info)
             .then(() => {});
     }
