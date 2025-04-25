@@ -12,9 +12,9 @@ export const onInputChange =
     };
 
 export const onCheckboxChange = 
-    (onChange:Func<boolean, void>) => 
+    <T = boolean>(onChange:Func<T, void>, trueVal:T, falseVal:T) => 
     (e:CheckboxChangeEvent) => {
-        onChange(e.target.checked);
+        onChange(e.target.checked ? trueVal : falseVal);
     }
 
 export const onRadioChange =
