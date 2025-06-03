@@ -31,14 +31,17 @@ const usePageTracking = () => {
     };
     
     if(debug) {
+      console.log("Tracking URL:", trackingUrl);
       console.log(`Page view: ${location.pathname + location.search}`);
       console.log(`Custom Tracking: ${info.url}`); return;
     } else {
+      if(trackingUrl) {
         request.post(trackingUrl)
-            .send(info)
-            .then(() => {});
+              .send(info)
+              .then(() => {});
+      }
     }
-  }, [location]);
+  }, [location, trackingUrl, debug]);
 };
 
 export default usePageTracking;
