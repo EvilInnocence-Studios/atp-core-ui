@@ -1,7 +1,7 @@
 import { config } from "@config";
-import { apiMethods } from "./methods";
-import { apiServices } from "./services";
 import { memoize } from "lodash";
+import { apiServices } from "src/services";
+import { apiMethods } from "./methods";
 
 export const api = () => apiMethods(config());
 
