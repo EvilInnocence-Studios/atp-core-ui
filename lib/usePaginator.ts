@@ -11,7 +11,7 @@ export declare interface IPaginator {
 
 export const usePaginator = (current:string, pageSize: string, update:(params:Index<string>) => void):IPaginator => {
     const defaultPageSize = parseInt(useSetting("defaultPageSize"));
-    const pageSizeOptions = useSetting("pageSizeOptions").split(",").map(Number);
+    const pageSizeOptions = (useSetting("pageSizeOptions") || "").split(",").map(Number);
 
     return {
         current: parseInt(current),
