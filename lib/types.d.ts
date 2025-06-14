@@ -2,7 +2,7 @@ import { ISettingContainer } from "@common/lib/setting/types";
 import request from "superagent";
 import { Index } from "ts-functional/dist/types";
 
-export declare type IApiConfig = {
+export declare type IConfig = {
     api: {
         baseUrl: string;
     };
@@ -27,7 +27,7 @@ export declare interface ISubscriptionPlan {
 }
 
 export type RequestFunc = <T>(url: string, bodyOrQuery: T) => request.Request;
-export type RequestGenerator = (method: string, apiConfig:IApiConfig) => RequestFunc;
+export type RequestGenerator = (method: string, apiConfig:IConfig) => RequestFunc;
 
 export declare interface IMethods  {
     get: RequestFunc<Record<string, any>>;
