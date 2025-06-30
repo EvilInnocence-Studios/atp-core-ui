@@ -1,5 +1,5 @@
 import { prop } from "ts-functional";
-import { AppType, getMenus, getRoutes, getSettings, IModule } from "./module";
+import { AppType, getMenus, getRoutes, getSettings, IModule } from "@core-shared/module";
 import { IConfig } from "./types";
 
 export const makeConfig = (apiUrl: string, modules:IModule[], appType:AppType) => ():IConfig => ({
