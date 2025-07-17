@@ -18,14 +18,6 @@ export declare type IConfig = {
     settings: ISettingContainer;
 };
 
-export declare interface ISubscriptionPlan {
-    planId: string;
-    description: string;
-    renews: string;
-    period: number;
-    price: number;
-}
-
 export type RequestFunc = <T>(url: string, bodyOrQuery: T) => request.Request;
 export type RequestGenerator = (method: string, apiConfig:IConfig) => RequestFunc;
 
