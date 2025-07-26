@@ -8,9 +8,6 @@ export declare type IConfig = {
     };
     modules: string[];
     menus: ItemType<MenuItemType>[];
-    paypal: {
-        plans: ISubscriptionPlan[];
-    };
     routes: Array<{
         path: string;
         component: React.ComponentType<any>;

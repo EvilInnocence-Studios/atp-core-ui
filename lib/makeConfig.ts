@@ -8,7 +8,4 @@ export const makeConfig = (apiUrl: string, modules:IModule[], appType:AppType) =
     menus: getMenus(modules, appType),
     routes: getRoutes(modules, appType),
     settings: getSettings(modules),
-    paypal: {
-        plans: [],
-    }
 });
