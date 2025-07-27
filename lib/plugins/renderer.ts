@@ -18,11 +18,17 @@ const registerRendererPlugin = <P>(slots: RendererPluginSlots<P>) => (priority: 
 }
 
 const render = <P>(slots: RendererPluginSlots<P>) => (props: P) => {
-    return slots.map(plugin => plugin.plugin(props)).flat();
+    return slots.reduce((acc, { plugin }) => {
+        const rendered = plugin(props);
+        if (rendered) {
+            acc.push(rendered);
+        }
+        return acc;
+    }, [] as JSX.Element[]);
 }
 
 export const rendererPlugins = <P>() => {
-    const slots = {} as RendererPluginSlots<P>;
+    const slots = [] as RendererPluginSlots<P>;
     return {
         register: registerRendererPlugin(slots),
         render: render(slots),
