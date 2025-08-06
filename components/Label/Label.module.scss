@@ -17,6 +17,18 @@
             background-color: globals.$brand-bg-light;
             width: 100%;
         }
+        :global(.ant-select) {
+            width: 100%;
+            padding: 0;
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            border: none !important;
+            > :global(.ant-select-selector) {
+                border-top-left-radius: 0;
+                border-bottom-left-radius: 0;
+                border: none;
+            }
+        }
     }
     > label {
         display: inline-block;
