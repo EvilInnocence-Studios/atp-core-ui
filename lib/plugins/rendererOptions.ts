@@ -16,19 +16,23 @@ const registerRendererPlugin = <P>(slots: RendererPluginSlots<P>) => (plugin: IR
     slots.unshift(plugin);
 }
 
-const render = <P>(slots: RendererPluginSlots<P>) => (props: P) => {
-    const rendered = slots.find(({ filter }) => filter(props));
-    if (rendered) {
-        return rendered.plugin(props);
+const render = <P>(slots: RendererPluginSlots<P>, defaultPlugin:Renderer<P>) => (props: P) => {
+    for (const slot of slots) {
+        if (slot.filter(props)) {
+            const element = slot.plugin(props);
+            if (element !== null) {
+                return element;
+            }
+        }
     }
-    return null;
+    return defaultPlugin(props);
 }
 
 export const rendererOptionPlugins = <P>(defaultPlugin:Renderer<P> = () => null) => {
-    const slots = [{filter: () => true, plugin: defaultPlugin}] as RendererPluginSlots<P>;
+    const slots = [] as RendererPluginSlots<P>;
     return {
         register: registerRendererPlugin(slots),
-        render: render(slots),
+        render: render(slots, defaultPlugin),
     };
 }
 
