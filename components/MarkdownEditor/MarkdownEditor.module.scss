@@ -1,0 +1,16 @@
+@use "@styles/globals.module.scss";
+
+.editor {
+    margin: -12px;
+    :global(.mdxeditor-root-contenteditable) {
+        background-color: #ffffff;
+        border-bottom-right-radius: 8px;
+        border-bottom-left-radius: 8px;
+        p {
+            display: block;
+        }
+    }
+    :global(.mdxeditor-toolbar) {
+        border-radius: 0;
+    }
+}
