@@ -26,6 +26,7 @@ export const useUpdater = <Entity extends {}>(
     load:(id:string) => Promise<Entity>,
     update:(id:string, data:Partial<Entity>) => Promise<Entity>,
     saveMode: "automatic" | "manual" = "automatic",
+    onUpdate: (data:Entity) => () => void = () => () => {},
 ):IUpdater<Entity> => {
     const dirty = useToggle(false);
     const loader = useLoader();
@@ -39,7 +40,7 @@ export const useUpdater = <Entity extends {}>(
     const save = () => {
         loader.start();
         update(id, history.entity)
-            .then(all(dirty.off, flash.success(`Saved ${entityType}`)))
+            .then(all(dirty.off, flash.success(`Saved ${entityType}`), onUpdate(history.entity)))
             .catch(flash.error(`Failed to save ${entityType}`))
             .finally(loader.stop);
     }
