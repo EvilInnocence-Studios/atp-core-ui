@@ -16,7 +16,7 @@ export declare interface IUpdater<Entity> {
     history: IEditHistory<Entity>;
     save: () => void;
     refresh: () => void;
-    UpdateButtons: React.FC;
+    UpdateButtons: React.FC<{className?: string}>;
 }
 
 export const useUpdater = <Entity extends {}>(
@@ -68,8 +68,8 @@ export const useUpdater = <Entity extends {}>(
 
     useEffect(refresh, [id]);
 
-    const UpdateButtons = () => (
-        <Space.Compact>
+    const UpdateButtons = ({className}:{className?:string}) => (
+        <Space.Compact className={className}>
             <Button onClick={history.undo} disabled={history.index === 1 || history.length === 1}>
                 <FontAwesomeIcon icon={faUndo} /> Undo
             </Button>
