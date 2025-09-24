@@ -15,3 +15,8 @@ export const appendTo = <T>(arr:T[]) => (item:T) => [...arr, item];
 export const stopProp = {
     onClick: (e:React.MouseEvent) => e.stopPropagation(),
 }
+
+export const noProp = (f:(e:any) => any) => (e:any) => {
+    e.stopPropagation();
+    return f(e);
+}
