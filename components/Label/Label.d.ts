@@ -6,6 +6,7 @@ export declare interface ILabelProps {
 export declare interface ILabelInputProps {
     label: string;
     children: React.ReactNode;
+    className?: string;
 }
 
 export type LabelProps = ILabelInputProps & ILabelProps;
