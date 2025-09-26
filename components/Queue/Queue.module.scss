@@ -3,8 +3,8 @@
 .queue {
     text-align: center;
     border-bottom: solid 1px var(--borderColor);
-    padding-bottom: globals.$padding-sm;
-    margin-bottom: globals.$padding-sm;
+    padding-bottom: var(--paddingSmall);
+    margin-bottom: var(--paddingSmall);
     span {
         display: inline-block;
         margin: 0 0.5rem;
