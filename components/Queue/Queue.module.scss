@@ -2,7 +2,7 @@
 
 .queue {
     text-align: center;
-    border-bottom: solid 1px globals.$brand-border;
+    border-bottom: solid 1px var(--borderColor);
     padding-bottom: globals.$padding-sm;
     margin-bottom: globals.$padding-sm;
     span {

@@ -11,6 +11,6 @@
     margin: 0;
     border: none;
     &.hasChanges {
-        background-color: globals.$changed !important;
+        background-color: var(--changedColor) !important;
     }
 }

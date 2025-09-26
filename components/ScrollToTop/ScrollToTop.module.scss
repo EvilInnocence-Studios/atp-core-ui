@@ -1,7 +1,7 @@
 @use "@styles/globals.module.scss";
 
 .scrollToTop {
-    color: globals.$brand-primary;
+    color: var(--primaryColor);
     position: fixed;
     bottom: 20px;
     right: 20px;
