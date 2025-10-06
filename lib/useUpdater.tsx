@@ -8,11 +8,13 @@ import { useLoader } from "./useLoader";
 import { useToggle } from "./useToggle";
 import { all } from "ts-functional";
 
+export declare type EntityUpdater<E, T> = (field: keyof E) => (value: T) => void;
+
 export declare interface IUpdater<Entity> {
     isLoading: boolean;
-    updateString: (field: keyof Entity) => (value?: string) => void;
-    updateToggle: (field: keyof Entity) => (value?: boolean) => void;
-    updateNumber: (field: keyof Entity) => (value?: number | null) => void;
+    updateString: EntityUpdater<Entity, string>;
+    updateToggle: EntityUpdater<Entity, boolean>;
+    updateNumber: EntityUpdater<Entity, number | null>;
     history: IEditHistory<Entity>;
     save: () => void;
     refresh: () => void;
