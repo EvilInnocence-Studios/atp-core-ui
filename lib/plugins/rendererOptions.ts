@@ -6,6 +6,7 @@ import { Func } from "ts-functional/dist/types";
 type Renderer<P> = Func<P, JSX.Element | null>;
 
 export interface IRendererOptionPlugin<P> {
+    priority?: number;
     filter: (props: P) => boolean;
     plugin: Renderer<P>;
 }
@@ -14,6 +15,7 @@ type RendererPluginSlots<P> = IRendererOptionPlugin<P>[];
 
 const registerRendererPlugin = <P>(slots: RendererPluginSlots<P>) => (plugin: IRendererOptionPlugin<P>) => {
     slots.unshift(plugin);
+    slots.sort((a, b) => (b.priority || 0) - (a.priority || 0));
 }
 
 const render = <P>(slots: RendererPluginSlots<P>, defaultPlugin:Renderer<P>) => (props: P) => {
