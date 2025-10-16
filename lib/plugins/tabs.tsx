@@ -20,8 +20,10 @@ export declare interface ITabPluginRenderProps {
     onChange?: (key: string) => void;
 }
 
-const render = <P extends {}>(slots: ITabPluginProps<P>[]) => ({defaultActiveKey, onChange, ...tabProps}:ITabPluginRenderProps & P) => 
-    <Tabs defaultActiveKey={defaultActiveKey} onChange={onChange} tabPosition="left">
+type TabPosition = "left" | "right" | "top" | "bottom";
+
+const render = <P extends {}>(slots: ITabPluginProps<P>[], tabPosition:TabPosition = "left") => ({defaultActiveKey, onChange, ...tabProps}:ITabPluginRenderProps & P) => 
+    <Tabs defaultActiveKey={defaultActiveKey} onChange={onChange} tabPosition={tabPosition}>
         {slots.map(({ key, title, icon, component: Component }) => (
             <Tabs.TabPane tab={<><FontAwesomeIcon icon={icon} /> {title}</>} key={key}>
                 <Component {...tabProps as P} />
@@ -29,10 +31,10 @@ const render = <P extends {}>(slots: ITabPluginProps<P>[]) => ({defaultActiveKey
         ))}
     </Tabs>;
 
-export const tabPlugins = <P extends {}>() => {
+export const tabPlugins = <P extends {}>(tabPosition:TabPosition = "left") => {
     const slots = [] as ITabPluginProps<P>[];
     return {
         register: registerTabPlugin(slots),
-        render: render(slots),
+        render: render(slots, tabPosition),
     };
 }
