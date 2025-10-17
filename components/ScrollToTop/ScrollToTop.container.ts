@@ -11,12 +11,9 @@ const injectScrollToTopProps = createInjector(({}:IScrollToTopInputProps):IScrol
   
     useEffect(() => {
       if (navigationType === "POP") {
-        console.log("POP navigation detected");
         // Restore scroll position if available
         const savedY = sessionStorage.getItem(location.key);
-        console.log("Restoring scroll position:", savedY);
         if (savedY !== null) {
-            console.log("Scrolling to Y:", Number(savedY));
           window.scrollTo(0, Number(savedY));
           setScroll(Number(savedY));
           return;
@@ -24,24 +21,20 @@ const injectScrollToTopProps = createInjector(({}:IScrollToTopInputProps):IScrol
       }
   
       // Default behavior: scroll to top on new navigation
-      console.log("New navigation detected, scrolling to top");
       window.scrollTo(0, 0);
     }, [location, navigationType]);
   
     // Save scroll position before leaving the page
     useEffect(() => {
       const handleBeforeUnload = () => {
-        console.log("Saving scroll position:", scroll);
         sessionStorage.setItem(location.key, String(scroll));
       };
       const logScrollPosition = () => {
-        console.log("Current scroll position:", window.scrollY);
         setScroll(window.scrollY);
       }
       window.addEventListener("beforeunload", handleBeforeUnload);
       window.addEventListener("scroll", logScrollPosition);
       return () => {
-        console.log("Component unmounting, saving scroll position:", window.scrollY);
         sessionStorage.setItem(location.key, String(window.scrollY));
         window.removeEventListener("beforeunload", handleBeforeUnload);
         window.removeEventListener("scroll", logScrollPosition);
@@ -50,7 +43,6 @@ const injectScrollToTopProps = createInjector(({}:IScrollToTopInputProps):IScrol
 
     const toTop = () => {
         if (location.hash) return;
-        console.log("Scroll to top triggered");
         window.scrollTo({top: 0, behavior: 'smooth'});
     }
     
