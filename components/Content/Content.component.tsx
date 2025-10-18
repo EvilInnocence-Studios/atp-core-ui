@@ -10,5 +10,5 @@ export const ContentComponent = ({}:ContentProps) =>
             <Route key={index} path={route.path} Component={route.component} />
         ))}
         <Route path="/:slug" Component={withRoute(Page)} />
-        <Route path="*" Component={() => <Page slug="404" disable404 />} />
+        <Route path="*" Component={() => <Page slug="404"/>} />
     </Routes>;
