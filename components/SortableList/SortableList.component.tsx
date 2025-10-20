@@ -4,8 +4,9 @@ import styles from './SortableList.module.scss';
 import { SortableContext, useSortable, verticalListSortingStrategy } from "@dnd-kit/sortable";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faForwardStep, faGripVertical } from "@fortawesome/free-solid-svg-icons";
+import clsx from "clsx";
 
-const ListItem = ({item, index, moveToTop, getId, getListId, children}:any) => {
+const ListItem = ({item, index, moveToTop, getId, getListId, children, className}:any) => {
     const {attributes, listeners, setNodeRef, setActivatorNodeRef, transform, transition} = useSortable({
         id: getListId(item, index),
       });
@@ -14,7 +15,7 @@ const ListItem = ({item, index, moveToTop, getId, getListId, children}:any) => {
         transition
       } : undefined;
 
-    return <div className={styles.link} key={getId(item)} style={style} ref={setNodeRef} {...attributes}>
+    return <div className={clsx([styles.link, className])} key={getId(item)} style={style} ref={setNodeRef} {...attributes}>
         <span className={styles.icon} ref={setActivatorNodeRef} {...listeners}>
             <FontAwesomeIcon icon={faGripVertical} />
         </span>
@@ -25,18 +26,27 @@ const ListItem = ({item, index, moveToTop, getId, getListId, children}:any) => {
     </div>;
 }
 
-export const SortableListComponent = <T extends any, Extra = {}>({items, getId, getListId, sortItems, moveToTop, ItemComponent, itemProps}:SortableListProps<T, Extra>) =>
+export const SortableListComponent = <T extends any, Extra = {}>({
+    items, getId, getListId,
+    sortItems, moveToTop,
+    ItemComponent, itemProps,
+    className, itemClassName,
+    isActive, activeClassName,
+}:SortableListProps<T, Extra>) =>
     <DndContext onDragEnd={sortItems}>
         <SortableContext items={items.map(getListId)} strategy={verticalListSortingStrategy}>
-            {items.map((item, i) => <ListItem
-                key={getId(item)}
-                item={item}
-                getId={getId}
-                getListId={getListId}
-                index={i}
-                moveToTop={moveToTop}
-            >
-                <ItemComponent item={item} {...itemProps as Extra} />
-            </ListItem>)}
+            <div className={className}>
+                {items.map((item, i) => <ListItem
+                    className={clsx([itemClassName, isActive && isActive(item) && activeClassName])}
+                    key={getId(item)}
+                    item={item}
+                    getId={getId}
+                    getListId={getListId}
+                    index={i}
+                    moveToTop={moveToTop}
+                >
+                    <ItemComponent item={item} {...itemProps as Extra} />
+                </ListItem>)}
+            </div>
         </SortableContext>
     </DndContext>;

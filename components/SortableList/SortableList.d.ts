@@ -17,6 +17,10 @@ export declare interface ISortableListInputProps<T, Extra = {}> {
     sort: (id:string, newIndex: number) => void;
     ItemComponent: React.ComponentType<{item: T} & Extra>;
     itemProps?: Extra;
+    className?: string;
+    itemClassName?: string;
+    isActive?: (item: T) => boolean;
+    activeClassName?: string;
 }
 
 export type SortableListProps<T, Extra = {}> = ISortableListInputProps<T, Extra> & ISortableListProps<T>;
