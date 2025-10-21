@@ -7,11 +7,13 @@ export declare interface ISortableItemProps<T> {
 export declare interface ISortableListProps<T> {
     sortItems: (e:{active:{id:any}, over:{id:any} | null}) => void;
     moveToTop: (itemId: any) => () => void;
+    moveToBottom: (itemId: any) => () => void;
 }
 
 // What gets passed into the component from the parent as attributes
 export declare interface ISortableListInputProps<T, Extra = {}> {
     items: T[];
+    direction?: "vertical" | "horizontal"
     getId: (item: T) => string;
     getListId: (item: T, index: number) => string;
     sort: (id:string, newIndex: number) => void;

@@ -20,3 +20,5 @@ export const noProp = (f:(e:any) => any) => (e:any) => {
     e.stopPropagation();
     return f(e);
 }
+
+export const callWith = <T>(key: keyof T) => (f:(arg:any) => any) => (obj:T) => f(obj[key]);

@@ -15,8 +15,12 @@ const injectSortableListProps = <T, Extra = {}>() => createInjector(
         const moveToTop = (itemId:any) => () => {
             sort(itemId, 0);
         };
+
+        const moveToBottom = (itemId:any) => () => {
+            sort(itemId, items.length - 1);
+        }
         
-        return {sortItems, moveToTop};
+        return {sortItems, moveToTop, moveToBottom};
     }
 );
 
