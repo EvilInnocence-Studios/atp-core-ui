@@ -4,7 +4,7 @@ import {IMediaPopupInputProps, MediaPopupProps, IMediaPopupProps} from "./MediaP
 import { useState } from "react";
 import { useModal } from "@core/lib/useModal";
 
-const injectMediaPopupProps = createInjector(({}:IMediaPopupInputProps):IMediaPopupProps => {
+const injectMediaPopupProps = createInjector(<T>({}:IMediaPopupInputProps<T>):IMediaPopupProps => {
     const [selectedImage, setSelectedImage] = useState<string| null>(null);
     const modal = useModal();
 
