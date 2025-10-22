@@ -1,0 +1,24 @@
+@use "@styles/globals.module.scss";
+
+.mediaList {
+    max-width: var(--comicArchiveWidth);
+    margin: auto;
+    text-align: center;
+    .mediaItem {
+        display: inline-block;
+        margin: var(--padding);
+        max-width: 20%;
+        img {
+            width: 100%;
+            height: auto;
+            border-radius: var(--borderRadius);
+            display: block;
+        }
+    }
+}
+
+.switcher {
+    img {
+        max-height: calc(100vh - 300px) !important;
+    }
+}
