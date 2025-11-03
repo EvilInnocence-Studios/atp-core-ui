@@ -1,8 +1,9 @@
-import { createInjector, inject, mergeProps } from "unstateless";
-import {MediaPopupComponent} from "./MediaPopup.component";
-import {IMediaPopupInputProps, MediaPopupProps, IMediaPopupProps} from "./MediaPopup.d";
-import { useState } from "react";
+import { overridable } from "@core/lib/overridable";
 import { useModal } from "@core/lib/useModal";
+import { useState } from "react";
+import { createInjector, inject, mergeProps } from "unstateless";
+import { MediaPopupComponent } from "./MediaPopup.component";
+import { IMediaPopupInputProps, IMediaPopupProps, MediaPopupProps } from "./MediaPopup.d";
 
 const injectMediaPopupProps = createInjector(<T>({}:IMediaPopupInputProps<T>):IMediaPopupProps => {
     const [selectedImage, setSelectedImage] = useState<string| null>(null);
@@ -20,4 +21,4 @@ const connect = inject<IMediaPopupInputProps<any>, MediaPopupProps>(mergeProps(
     injectMediaPopupProps,
 ));
 
-export const MediaPopup = connect(MediaPopupComponent);
+export const MediaPopup = overridable<IMediaPopupInputProps<any>>(connect(MediaPopupComponent));

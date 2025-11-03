@@ -1,6 +1,7 @@
+import { overridable } from "@core/lib/overridable";
 import { createInjector, inject, mergeProps } from "unstateless";
-import {ContentComponent} from "./Content.component";
-import {IContentInputProps, ContentProps, IContentProps} from "./Content.d";
+import { ContentComponent } from "./Content.component";
+import { ContentProps, IContentInputProps, IContentProps } from "./Content.d";
 
 const injectContentProps = createInjector(({}:IContentInputProps):IContentProps => {
     return {};
@@ -10,4 +11,4 @@ const connect = inject<IContentInputProps, ContentProps>(mergeProps(
     injectContentProps,
 ));
 
-export const Content = connect(ContentComponent);
+export const Content = overridable<IContentInputProps>(connect(ContentComponent));

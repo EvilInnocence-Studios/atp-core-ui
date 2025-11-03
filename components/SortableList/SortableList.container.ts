@@ -1,7 +1,8 @@
-import { createInjector, inject, mergeProps } from "unstateless";
+import { overridable } from "@core/lib/overridable";
 import React from "react";
-import {SortableListComponent} from "./SortableList.component";
-import {ISortableListInputProps, SortableListProps, ISortableListProps} from "./SortableList.d";
+import { createInjector, inject, mergeProps } from "unstateless";
+import { SortableListComponent } from "./SortableList.component";
+import { ISortableListInputProps, ISortableListProps, SortableListProps } from "./SortableList.d";
 
 const injectSortableListProps = <T, Extra = {}>() => createInjector(
     ({items, sort}:ISortableListInputProps<T, Extra>):ISortableListProps<T> => {
@@ -32,6 +33,6 @@ const connect = <T, Extra = unknown>() =>
     );
 
 export function SortableList<T, Extra = unknown>(props: ISortableListInputProps<T, Extra>) {
-    const Connected = connect<T, Extra>()(SortableListComponent as React.ComponentType<SortableListProps<T, Extra>>);
+    const Connected = overridable<ISortableListInputProps<T, Extra>>(connect<T, Extra>()(SortableListComponent as React.ComponentType<SortableListProps<T, Extra>>));
     return React.createElement(Connected, props);
 }

@@ -1,4 +1,5 @@
 import { flash } from "@core/lib/flash";
+import { overridable } from "@core/lib/overridable";
 import { useEffect, useState } from "react";
 import { createInjector, inject, mergeProps } from "unstateless";
 import { UploaderComponent } from "./Uploader.component";
@@ -42,4 +43,4 @@ const connect = inject(mergeProps(
     injectUploaderProps,
 ));
 
-export const Uploader = connect(UploaderComponent as any);
+export const Uploader = overridable<IUploaderInputProps<any>>(connect(UploaderComponent as any));

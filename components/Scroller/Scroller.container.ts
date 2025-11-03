@@ -1,3 +1,4 @@
+import { overridable } from "@core/lib/overridable";
 import { useScrollable } from "@core/useScrollable";
 import { createInjector, inject, mergeProps } from "unstateless";
 import { ScrollerComponent } from "./Scroller.component";
@@ -13,4 +14,4 @@ const connect = inject<IScrollerInputProps<any>, ScrollerProps<any>>(mergeProps(
     injectScrollerProps,
 ));
 
-export const Scroller = connect(ScrollerComponent);
+export const Scroller = overridable<IScrollerInputProps>(connect(ScrollerComponent));

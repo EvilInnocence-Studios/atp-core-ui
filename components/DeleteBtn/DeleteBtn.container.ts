@@ -1,6 +1,7 @@
+import { overridable } from "@core/lib/overridable";
 import { createInjector, inject, mergeProps } from "unstateless";
-import {DeleteBtnComponent} from "./DeleteBtn.component";
-import {IDeleteBtnInputProps, DeleteBtnProps, IDeleteBtnProps} from "./DeleteBtn";
+import { DeleteBtnProps, IDeleteBtnInputProps, IDeleteBtnProps } from "./DeleteBtn";
+import { DeleteBtnComponent } from "./DeleteBtn.component";
 
 const injectDeleteBtnProps = createInjector(({}:IDeleteBtnInputProps):IDeleteBtnProps => {
     return {};
@@ -10,4 +11,4 @@ const connect = inject<IDeleteBtnInputProps, DeleteBtnProps>(mergeProps(
     injectDeleteBtnProps,
 ));
 
-export const DeleteBtn = connect(DeleteBtnComponent);
+export const DeleteBtn = overridable<IDeleteBtnInputProps>(connect(DeleteBtnComponent));

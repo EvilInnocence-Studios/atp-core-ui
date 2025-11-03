@@ -1,3 +1,4 @@
+import { overridable } from "@core/lib/overridable";
 import { useEffect, useState } from "react";
 import { createInjector, inject, mergeProps } from "unstateless";
 import { MediaSwitcherComponent } from "./MediaSwitcher.component";
@@ -24,4 +25,4 @@ const connect = inject<IMediaSwitcherInputProps<any>, MediaSwitcherProps<any>>(m
     injectMediaSwitcherProps,
 ));
 
-export const MediaSwitcher = connect(MediaSwitcherComponent);
+export const MediaSwitcher = overridable<IMediaSwitcherInputProps<any>>(connect(MediaSwitcherComponent));

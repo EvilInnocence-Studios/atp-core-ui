@@ -1,8 +1,9 @@
-import { createInjector, inject, mergeProps } from "unstateless";
-import {ScrollToTopComponent} from "./ScrollToTop.component";
-import {IScrollToTopInputProps, ScrollToTopProps, IScrollToTopProps} from "./ScrollToTop.d";
-import { useLocation, useNavigationType } from "react-router";
+import { overridable } from "@core/lib/overridable";
 import { useEffect, useState } from "react";
+import { useLocation, useNavigationType } from "react-router";
+import { createInjector, inject, mergeProps } from "unstateless";
+import { ScrollToTopComponent } from "./ScrollToTop.component";
+import { IScrollToTopInputProps, IScrollToTopProps, ScrollToTopProps } from "./ScrollToTop.d";
 
 const injectScrollToTopProps = createInjector(({}:IScrollToTopInputProps):IScrollToTopProps => {
     const location = useLocation();
@@ -55,4 +56,4 @@ const connect = inject<IScrollToTopInputProps, ScrollToTopProps>(mergeProps(
     injectScrollToTopProps,
 ));
 
-export const ScrollToTop = connect(ScrollToTopComponent);
+export const ScrollToTop = overridable<IScrollToTopInputProps>(connect(ScrollToTopComponent));
