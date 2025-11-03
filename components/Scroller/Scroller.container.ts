@@ -14,4 +14,4 @@ const connect = inject<IScrollerInputProps<any>, ScrollerProps<any>>(mergeProps(
     injectScrollerProps,
 ));
 
-export const Scroller = overridable<IScrollerInputProps>(connect(ScrollerComponent));
+export const Scroller = overridable<IScrollerInputProps<any>>(connect(ScrollerComponent));
