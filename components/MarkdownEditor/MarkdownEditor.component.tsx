@@ -7,6 +7,7 @@ import "@mdxeditor/editor/style.css";
 import { useEffect, useRef } from "react";
 import { MarkdownEditorProps } from "./MarkdownEditor.d";
 import styles from "./MarkdownEditor.module.scss";
+import { debounce } from "lodash";
 
 export const MarkdownEditorComponent = ({value, onChange}:MarkdownEditorProps) => {
     const ref = useRef<MDXEditorMethods>(null);
@@ -21,7 +22,7 @@ export const MarkdownEditorComponent = ({value, onChange}:MarkdownEditorProps) =
         <MDXEditor
             ref={ref}
             markdown={value || ""}
-            onChange={onChange}
+            onChange={debounce(onChange, 2000)}
             plugins={[
                 headingsPlugin(),
                 markdownShortcutPlugin(),
