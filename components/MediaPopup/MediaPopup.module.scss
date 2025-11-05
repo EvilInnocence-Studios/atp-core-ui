@@ -15,6 +15,12 @@
             display: block;
         }
     }
+    &.vertical {
+        .mediaItem {
+            max-width: calc(50% - var(--paddingSmall) * 2);
+            margin: var(--padding) var(--paddingSmall);
+        }
+    }
 }
 
 .switcher {

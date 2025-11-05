@@ -10,6 +10,7 @@ export declare interface IMediaPopupInputProps<T> {
     media: T[];
     getId: (item:T) => string;
     render: (item:T) => JSX.Element;
+    vertical?: boolean;
 }
 
 export type MediaPopupProps = IMediaPopupInputProps<T> & IMediaPopupProps;
