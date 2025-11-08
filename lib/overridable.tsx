@@ -1,8 +1,8 @@
 import { Func } from "ts-functional/dist/types";
 
-type ComponentLike<InputProps> = Func<InputProps, JSX.Element>;
+type ComponentLike<InputProps> = Func<InputProps, JSX.Element | null>;
 interface IOriginal {
-	Original: () => JSX.Element;
+	Original: () => JSX.Element | null;
 }
 export type OverridableComponent<InputProps> = ComponentLike<InputProps> & {
 	override: (impl: ComponentLike<InputProps & IOriginal>) => void;
@@ -12,7 +12,7 @@ export type OverridableComponent<InputProps> = ComponentLike<InputProps> & {
 export function overridable<InputProps>(Base: ComponentLike<InputProps>): OverridableComponent<InputProps> {
 	let Impl: ComponentLike<InputProps & IOriginal> = Base;
 
-	const Wrapper = ((props: InputProps): JSX.Element => {
+	const Wrapper = ((props: InputProps): JSX.Element | null => {
 		return <Impl {...props} Original={() => <Base {...props as any} />} />;
 	}) as OverridableComponent<InputProps>;
 
