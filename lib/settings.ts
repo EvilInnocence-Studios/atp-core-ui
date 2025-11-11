@@ -30,5 +30,21 @@ export const coreSettings:ISettingContainer = {
                 description: "The S3 bucket name for storing media files.",
             },
         }
+    },
+    Theme: {
+        Elements: {
+            "theme.scrollerItemWidth": {
+                displayName: "Scroller Item Width",
+                type: "string",
+                defaultValue: "256px",
+                description: "The width of each item in scroller components.",
+            },
+            "theme.scrollerHeight": {
+                displayName: "Scroller Height",
+                type: "string",
+                defaultValue: "390px",
+                description: "The height of the scroller component.",
+            }
+        }
     }
 }
