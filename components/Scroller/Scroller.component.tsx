@@ -4,7 +4,7 @@ import styles from './Scroller.module.scss';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretLeft, faCaretRight } from "@fortawesome/free-solid-svg-icons";
 
-export const ScrollerComponent = <T extends {}>({title, items, scroll, getId, Component, componentProps}:ScrollerProps<T>) => 
+export const ScrollerComponent = <T extends {}>({title, items, scroll, getId, Component, componentProps, className}:ScrollerProps<T>) => 
     <div className={styles.scrollerContainer}>
         <h2 className={styles.scrollerTitle}>{title}</h2>
         <div
@@ -31,7 +31,7 @@ export const ScrollerComponent = <T extends {}>({title, items, scroll, getId, Co
                 onMouseLeave={scroll.stop}
                 style={{visibility: scroll.x.canScrollRight ? 'visible' : 'hidden'}}
             />
-            <div className={styles.scrollerList} style={{left: scroll.x.offset}} ref={scroll.ref}>
+            <div className={clsx([styles.scrollerList, className])} style={{left: scroll.x.offset}} ref={scroll.ref}>
                 {items.map((item) => <Component {...componentProps} item={item} key={getId(item)} />)}
             </div>
         </div>
