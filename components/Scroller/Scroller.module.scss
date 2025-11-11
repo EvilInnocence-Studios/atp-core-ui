@@ -10,7 +10,7 @@
 .scroller {
     position: relative;
     overflow: hidden;
-    height: 390px;
+    height: var(--scrollerHeight);
     background-color: var(--bgLightColor);
     padding-bottom: var(--padding);
     &::after {
@@ -52,7 +52,7 @@
         overflow-y: hidden;
         white-space: nowrap;
         > * {
-            width: 256px;
+            width: var(--scrollerItemWidth);
         }
         * {
             white-space: normal;
