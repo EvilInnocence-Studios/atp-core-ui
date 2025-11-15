@@ -10,5 +10,6 @@ const injectFaderProps = createInjector(({}:IFaderInputProps):IFaderProps => {
 const connect = inject<IFaderInputProps, FaderProps>(mergeProps(
     injectFaderProps,
 ));
+export const connectFader = connect;
 
 export const Fader = overridable<IFaderInputProps>(connect(FaderComponent));

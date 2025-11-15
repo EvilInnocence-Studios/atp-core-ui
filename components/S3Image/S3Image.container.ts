@@ -13,5 +13,6 @@ const injectS3ImageProps = createInjector(({folderSetting, fileName}:IS3ImageInp
 const connect = inject<IS3ImageInputProps, S3ImageProps>(mergeProps(
     injectS3ImageProps,
 ));
+export const connectS3Image = connect;
 
 export const S3Image = overridable<IS3ImageInputProps>(connect(S3ImageComponent));

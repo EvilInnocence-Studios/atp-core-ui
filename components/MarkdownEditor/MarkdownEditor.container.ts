@@ -10,5 +10,6 @@ const injectMarkdownEditorProps = createInjector(({}:IMarkdownEditorInputProps):
 const connect = inject<IMarkdownEditorInputProps, MarkdownEditorProps>(mergeProps(
     injectMarkdownEditorProps,
 ));
+export const connectMarkdownEditor = connect;
 
 export const MarkdownEditor = overridable<IMarkdownEditorInputProps>(connect(MarkdownEditorComponent));

@@ -20,5 +20,6 @@ const injectMediaPopupProps = createInjector(<T>({}:IMediaPopupInputProps<T>):IM
 const connect = inject<IMediaPopupInputProps<any>, MediaPopupProps>(mergeProps(
     injectMediaPopupProps,
 ));
+export const connectMediaPopup = connect;
 
 export const MediaPopup = overridable<IMediaPopupInputProps<any>>(connect(MediaPopupComponent));

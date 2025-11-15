@@ -10,5 +10,6 @@ const injectDateProps = createInjector(({}:IDateInputProps):IDateProps => {
 const connect = inject<IDateInputProps, DateProps>(mergeProps(
     injectDateProps,
 ));
+export const connectDate = connect;
 
 export const Date = overridable<IDateInputProps>(connect(DateComponent));

@@ -10,5 +10,6 @@ const injectDeleteBtnProps = createInjector(({}:IDeleteBtnInputProps):IDeleteBtn
 const connect = inject<IDeleteBtnInputProps, DeleteBtnProps>(mergeProps(
     injectDeleteBtnProps,
 ));
+export const connectDeleteBtn = connect;
 
 export const DeleteBtn = overridable<IDeleteBtnInputProps>(connect(DeleteBtnComponent));

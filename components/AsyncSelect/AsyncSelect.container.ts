@@ -20,5 +20,6 @@ const injectAsyncSelectProps = createInjector(<ValueType, OptionType extends Bas
 const connect = inject<IAsyncSelectInputProps<any, any>, AsyncSelectProps<any>>(mergeProps(
     injectAsyncSelectProps,
 ));
+export const connectAsyncSelect = connect;
 
 export const AsyncSelect = overridable<IAsyncSelectInputProps<any, any>>(connect(AsyncSelectComponent));

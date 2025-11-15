@@ -55,5 +55,6 @@ const injectScrollToTopProps = createInjector(({}:IScrollToTopInputProps):IScrol
 const connect = inject<IScrollToTopInputProps, ScrollToTopProps>(mergeProps(
     injectScrollToTopProps,
 ));
+export const connectScrollToTop = connect;
 
 export const ScrollToTop = overridable<IScrollToTopInputProps>(connect(ScrollToTopComponent));

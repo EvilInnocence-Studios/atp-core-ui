@@ -58,5 +58,6 @@ const injectQueueProps = createInjector(<T>({
 const connect = inject<any, any>(mergeProps(
     injectQueueProps,
 ));
+export const connectQueue = connect;
 
 export const Queue = overridable<any>(connect(QueueComponent));

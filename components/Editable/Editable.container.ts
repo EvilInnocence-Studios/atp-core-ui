@@ -10,5 +10,6 @@ const injectEditableProps = createInjector(({}:IEditableInputProps):IEditablePro
 const connect = inject<IEditableInputProps, EditableProps>(mergeProps(
     injectEditableProps,
 ));
+export const connectEditable = connect;
 
 export const Editable = overridable<IEditableInputProps>(connect(EditableComponent));

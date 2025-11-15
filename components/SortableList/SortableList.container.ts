@@ -31,6 +31,7 @@ const connect = <T, Extra = unknown>() =>
             injectSortableListProps<T, Extra>(),
         ),
     );
+export const connectSortableList = connect;
 
 export function SortableList<T, Extra = unknown>(props: ISortableListInputProps<T, Extra>) {
     const Connected = overridable<ISortableListInputProps<T, Extra>>(connect<T, Extra>()(SortableListComponent as React.ComponentType<SortableListProps<T, Extra>>));

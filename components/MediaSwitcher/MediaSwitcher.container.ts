@@ -24,5 +24,6 @@ const injectMediaSwitcherProps = createInjector(<T>({media, defaultMediaId, getI
 const connect = inject<IMediaSwitcherInputProps<any>, MediaSwitcherProps<any>>(mergeProps(
     injectMediaSwitcherProps,
 ));
+export const connectMediaSwitcher = connect;
 
 export const MediaSwitcher = overridable<IMediaSwitcherInputProps<any>>(connect(MediaSwitcherComponent));

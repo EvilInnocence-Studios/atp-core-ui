@@ -10,5 +10,6 @@ const injectContentProps = createInjector(({}:IContentInputProps):IContentProps 
 const connect = inject<IContentInputProps, ContentProps>(mergeProps(
     injectContentProps,
 ));
+export const connectContent = connect;
 
 export const Content = overridable<IContentInputProps>(connect(ContentComponent));

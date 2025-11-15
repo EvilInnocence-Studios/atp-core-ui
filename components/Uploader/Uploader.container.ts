@@ -42,5 +42,6 @@ const injectUploaderProps = createInjector(<T extends {}>({upload, onUploadSucce
 const connect = inject(mergeProps(
     injectUploaderProps,
 ));
+export const connectUploader = connect;
 
 export const Uploader = overridable<IUploaderInputProps<any>>(connect(UploaderComponent as any));

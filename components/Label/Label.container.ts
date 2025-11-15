@@ -10,5 +10,6 @@ const injectLabelProps = createInjector(({}:ILabelInputProps):ILabelProps => {
 const connect = inject<ILabelInputProps, LabelProps>(mergeProps(
     injectLabelProps,
 ));
+export const connectLabel = connect;
 
 export const Label = overridable<ILabelInputProps>(connect(LabelComponent));

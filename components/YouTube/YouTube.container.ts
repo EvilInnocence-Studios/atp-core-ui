@@ -10,5 +10,6 @@ const injectYouTubeProps = createInjector(({}:IYouTubeInputProps):IYouTubeProps 
 const connect = inject<IYouTubeInputProps, YouTubeProps>(mergeProps(
     injectYouTubeProps,
 ));
+export const connectYouTube = connect;
 
 export const YouTube = overridable<IYouTubeInputProps>(connect(YouTubeComponent));
