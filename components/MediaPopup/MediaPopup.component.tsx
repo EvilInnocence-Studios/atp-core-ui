@@ -3,8 +3,9 @@ import {MediaPopupProps} from "./MediaPopup.d";
 import styles from './MediaPopup.module.scss';
 import { MediaSwitcher } from "../MediaSwitcher";
 import clsx from "clsx";
+import { overridable } from "@core/lib/overridable";
 
-export const MediaPopupComponent = ({media, getId, render, isOpen, open, close, selectedImage, vertical}:MediaPopupProps) =><>
+export const MediaPopupComponent = overridable(({media, getId, render, isOpen, open, close, selectedImage, vertical}:MediaPopupProps) =><>
     <Modal open={isOpen} onClose={close} onCancel={close} footer={null}>
         <div className={styles.switcher}>
             <MediaSwitcher
@@ -22,4 +23,4 @@ export const MediaPopupComponent = ({media, getId, render, isOpen, open, close, 
             </div>
         )}
     </div>
-</>;
+</>);

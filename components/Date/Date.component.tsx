@@ -1,6 +1,7 @@
 import { switchOn } from "ts-functional";
 import {DateProps} from "./Date.d";
 import styles from './Date.module.scss';
+import { overridable } from "@core/lib/overridable";
 
 const months = [
     'January', 'February', 'March', 'April', 'May', 'June',
@@ -27,7 +28,7 @@ const getOrdinal = (num:number) => num % 100 > 10 && num % 100 < 14 ? 'th' : swi
     default: () => 'th'
 });
 
-export const DateComponent = ({date}:DateProps) => {
+export const DateComponent = overridable(({date}:DateProps) => {
     if(!date) return <span className={styles.noDate}>No Date</span>;
     const parts = date.split('-');
     const year = parseInt(parts[0], 10);
@@ -37,4 +38,4 @@ export const DateComponent = ({date}:DateProps) => {
     const weekDay = getWeekDay(year, month, day);
     const ordinal = getOrdinal(day);
     return <span>{weekDay}, {monthName} {day}<sup>{ordinal}</sup>, {year}</span>;
-}
+});

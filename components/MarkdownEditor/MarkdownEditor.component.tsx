@@ -8,8 +8,9 @@ import { useEffect, useRef } from "react";
 import { MarkdownEditorProps } from "./MarkdownEditor.d";
 import styles from "./MarkdownEditor.module.scss";
 import { debounce } from "lodash";
+import { overridable } from "@core/lib/overridable";
 
-export const MarkdownEditorComponent = ({value, onChange}:MarkdownEditorProps) => {
+export const MarkdownEditorComponent = overridable(({value, onChange}:MarkdownEditorProps) => {
     const ref = useRef<MDXEditorMethods>(null);
     
     useEffect(() => {
@@ -46,4 +47,4 @@ export const MarkdownEditorComponent = ({value, onChange}:MarkdownEditorProps) =
             ]}
         />
     </div>;
-}
+});

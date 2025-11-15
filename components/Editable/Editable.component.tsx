@@ -6,8 +6,9 @@ import { useEffect, useState } from "react";
 import { EditableProps } from "./Editable";
 import styles from './Editable.module.scss';
 import { stopProp } from "@core/lib/util";
+import { overridable } from "@core/lib/overridable";
 
-export const EditableComponent = ({value, onChange, placeholder, textArea}:EditableProps) => { 
+export const EditableComponent = overridable(({value, onChange, placeholder, textArea}:EditableProps) => { 
     const [curValue, setCurValue] = useState(value);
 
     const debouncedOnChange = debounce(onChange, 1000);
@@ -39,4 +40,4 @@ export const EditableComponent = ({value, onChange, placeholder, textArea}:Edita
         placeholder={placeholder}
         autoSize={{minRows: 1, maxRows: 100}}
     />;
-}
+});

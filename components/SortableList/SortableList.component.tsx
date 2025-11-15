@@ -5,8 +5,9 @@ import { horizontalListSortingStrategy, SortableContext, useSortable, verticalLi
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faForwardStep, faGripVertical } from "@fortawesome/free-solid-svg-icons";
 import clsx from "clsx";
+import { overridable } from "@core/lib/overridable";
 
-const ListItem = ({item, index, moveToTop, moveToBottom, getId, getListId, children, className, direction}:any) => {
+export const ListItem = overridable(({item, index, moveToTop, moveToBottom, getId, getListId, children, className, direction}:any) => {
     const {attributes, listeners, setNodeRef, setActivatorNodeRef, transform, transition} = useSortable({
         id: getListId(item, index),
       });
@@ -39,7 +40,7 @@ const ListItem = ({item, index, moveToTop, moveToBottom, getId, getListId, child
             {children}
         </span>
     </div>;
-}
+});
 
 export const SortableListComponent = <T extends any, Extra = {}>({
     items, getId, getListId,

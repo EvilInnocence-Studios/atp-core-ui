@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import { FaderProps } from "./Fader.d";
 import styles from './Fader.module.scss';
+import { overridable } from '@core/lib/overridable';
 
-export const FaderComponent = ({ interval, children }: FaderProps) => {
+export const FaderComponent = overridable(({ interval, children }: FaderProps) => {
     const [curIndex, setCurIndex] = useState(0);
 
     useEffect(() => {
@@ -20,4 +21,4 @@ export const FaderComponent = ({ interval, children }: FaderProps) => {
             {child}
         </div>)}
     </>;
-}
+});
