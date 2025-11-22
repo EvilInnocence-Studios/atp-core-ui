@@ -8,6 +8,7 @@ export declare interface IUploaderProps {
 export declare interface IUploaderInputProps<T> {
     upload: (file: File) => Promise<T>;
     onUploadSuccess?: (files: T[]) => void;
+    classes?: any;
 }
 
 export type UploaderProps<T> = IUploaderInputProps<T> & IUploaderProps;

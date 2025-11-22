@@ -17,11 +17,12 @@ export declare interface IQueueInputProps<T> {
     tagId: string;
     itemType: string;
     loadItems: () => Promise<T[]>;
-    getTags: (item:T) => string[];
+    getTags: (item: T) => string[];
     removeTag: (itemId: string, tagId: string) => Promise<void>;
-    getId: (item:T) => string;
-    getName: (item:T) => string;
-    getEditor: (item:T) => React.ReactNode;
+    getId: (item: T) => string;
+    getName: (item: T) => string;
+    getEditor: (item: T) => React.ReactNode;
+    classes?: any;
 }
 
 export type QueueProps<T> = IQueueInputProps<T> & IQueueProps<T>;

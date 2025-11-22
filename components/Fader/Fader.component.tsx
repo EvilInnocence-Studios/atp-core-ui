@@ -3,7 +3,7 @@ import { FaderProps } from "./Fader.d";
 import styles from './Fader.module.scss';
 import { overridable } from '@core/lib/overridable';
 
-export const FaderComponent = overridable(({ interval, children }: FaderProps) => {
+export const FaderComponent = overridable(({ interval, children, classes = styles }: FaderProps) => {
     const [curIndex, setCurIndex] = useState(0);
 
     useEffect(() => {
@@ -15,7 +15,7 @@ export const FaderComponent = overridable(({ interval, children }: FaderProps) =
     }, [curIndex, interval, children.length]);
 
     return <>
-        {children.map((child, index) => <div className={styles.faderElement} style={{
+        {children.map((child, index) => <div className={classes.faderElement} style={{
             opacity: index === curIndex ? 1 : 0,
         }}>
             {child}

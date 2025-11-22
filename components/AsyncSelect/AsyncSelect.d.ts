@@ -9,6 +9,7 @@ export declare interface IAsyncSelectProps<OptionType extends BaseOptionType | D
 // What gets passed into the component from the parent as attributes
 export declare interface IAsyncSelectInputProps<ValueType, OptionType extends BaseOptionType | DefaultOptionType> extends SelectProps<ValueType, OptionType> {
     getOptions: () => Promise<OptionType[]>;
+    classes?: any;
 }
 
 export type AsyncSelectProps<

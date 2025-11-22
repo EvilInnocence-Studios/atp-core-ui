@@ -6,6 +6,7 @@ export declare interface IFaderProps {
 export declare interface IFaderInputProps {
     interval: number;
     children: React.ReactNode[];
+    classes?: any;
 }
 
 export type FaderProps = IFaderInputProps & IFaderProps;

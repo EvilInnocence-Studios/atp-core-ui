@@ -7,6 +7,7 @@ export declare interface IS3ImageInputProps {
     folderSetting: string;
     fileName: string;
     className?: string;
+    classes?: any;
 }
 
 export type S3ImageProps = IS3ImageInputProps & IS3ImageProps;

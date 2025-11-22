@@ -5,7 +5,7 @@ export declare interface ISortableItemProps<T> {
 }
 
 export declare interface ISortableListProps<T> {
-    sortItems: (e:{active:{id:any}, over:{id:any} | null}) => void;
+    sortItems: (e: { active: { id: any }, over: { id: any } | null }) => void;
     moveToTop: (itemId: any) => () => void;
     moveToBottom: (itemId: any) => () => void;
 }
@@ -16,13 +16,14 @@ export declare interface ISortableListInputProps<T, Extra = {}> {
     direction?: "vertical" | "horizontal"
     getId: (item: T) => string;
     getListId: (item: T, index: number) => string;
-    sort: (id:string, newIndex: number) => void;
-    ItemComponent: React.ComponentType<{item: T} & Extra>;
+    sort: (id: string, newIndex: number) => void;
+    ItemComponent: React.ComponentType<{ item: T } & Extra>;
     itemProps?: Extra;
     className?: string;
     itemClassName?: string;
     isActive?: (item: T) => boolean;
     activeClassName?: string;
+    classes?: any;
 }
 
 export type SortableListProps<T, Extra = {}> = ISortableListInputProps<T, Extra> & ISortableListProps<T>;

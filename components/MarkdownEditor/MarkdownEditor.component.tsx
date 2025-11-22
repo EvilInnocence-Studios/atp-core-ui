@@ -10,16 +10,16 @@ import styles from "./MarkdownEditor.module.scss";
 import { debounce } from "lodash";
 import { overridable } from "@core/lib/overridable";
 
-export const MarkdownEditorComponent = overridable(({value, onChange}:MarkdownEditorProps) => {
+export const MarkdownEditorComponent = overridable(({ value, onChange, classes = styles }: MarkdownEditorProps) => {
     const ref = useRef<MDXEditorMethods>(null);
-    
+
     useEffect(() => {
         if (ref.current) {
             ref.current.setMarkdown(value || "");
         }
     }, [value, ref]);
 
-    return <div className={styles.editor}>
+    return <div className={classes.editor}>
         <MDXEditor
             ref={ref}
             markdown={value || ""}

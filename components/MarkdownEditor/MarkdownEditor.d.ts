@@ -6,6 +6,7 @@ export declare interface IMarkdownEditorProps {
 export declare interface IMarkdownEditorInputProps {
     value: string;
     onChange: (value: string) => void;
+    classes?: any;
 }
 
 export type MarkdownEditorProps = IMarkdownEditorInputProps & IMarkdownEditorProps;

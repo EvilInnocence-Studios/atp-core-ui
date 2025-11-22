@@ -4,7 +4,7 @@ export declare interface IScrollToTopProps {
 
 // What gets passed into the component from the parent as attributes
 export declare interface IScrollToTopInputProps {
-
+    classes?: any;
 }
 
 export type ScrollToTopProps = IScrollToTopInputProps & IScrollToTopProps;

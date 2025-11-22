@@ -8,19 +8,19 @@ import styles from './Editable.module.scss';
 import { stopProp } from "@core/lib/util";
 import { overridable } from "@core/lib/overridable";
 
-export const EditableComponent = overridable(({value, onChange, placeholder, textArea}:EditableProps) => { 
+export const EditableComponent = overridable(({ value, onChange, placeholder, textArea, classes = styles }: EditableProps) => {
     const [curValue, setCurValue] = useState(value);
 
     const debouncedOnChange = debounce(onChange, 1000);
 
     useEffect(() => {
-        if(value !== curValue) {
+        if (value !== curValue) {
             setCurValue(value);
         }
     }, [value]);
 
     useEffect(() => {
-        if(curValue !== value) {
+        if (curValue !== value) {
             debouncedOnChange(curValue);
         }
         return debouncedOnChange.cancel;
@@ -30,14 +30,14 @@ export const EditableComponent = overridable(({value, onChange, placeholder, tex
     useEffect(() => {
         setHasChanges(curValue !== value);
     }, [curValue, value]);
-    
+
     const Component = textArea ? Input.TextArea : Input;
     return <Component
         value={curValue}
-        className={clsx([styles.editable, hasChanges && styles.hasChanges])}
+        className={clsx([classes.editable, hasChanges && classes.hasChanges])}
         onChange={onInputChange(setCurValue)}
         {...stopProp}
         placeholder={placeholder}
-        autoSize={{minRows: 1, maxRows: 100}}
+        autoSize={{ minRows: 1, maxRows: 100 }}
     />;
 });

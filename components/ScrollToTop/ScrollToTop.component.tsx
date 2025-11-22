@@ -4,6 +4,6 @@ import { ScrollToTopProps } from "./ScrollToTop.d";
 import styles from './ScrollToTop.module.scss';
 import { overridable } from "@core/lib/overridable";
 
-export const ScrollToTopComponent = overridable(({toTop}:ScrollToTopProps) =>
-    <FontAwesomeIcon icon={faCircleUp} className={styles.scrollToTop} onClick={toTop} />
+export const ScrollToTopComponent = overridable(({ toTop, classes = styles }: ScrollToTopProps) =>
+    <FontAwesomeIcon icon={faCircleUp} className={classes.scrollToTop} onClick={toTop} />
 );
