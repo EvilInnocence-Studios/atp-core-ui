@@ -1,1 +1,42 @@
 @use "@styles/globals.module.scss";
+
+.item {
+    .title {
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        padding: 2px 4px;
+        opacity: 0;
+        transition: opacity 0.2s;
+        z-index: 100;
+        pointer-events: none; // Allow clicking through when hidden? No, we need to click it to select.
+        // But if opacity is 0, we probably shouldn't be able to click it unless we hover?
+        // If we hover the item, opacity becomes 1, then we can click.
+        // If selected, opacity is 1.
+    }
+
+    &:hover .title,
+    &[data-selected="true"] .title {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    // Hover effect for the item itself
+    // We use box-shadow inset to avoid layout shifts if border width changes, 
+    // or just change border color if it already has a transparent border.
+    // It has '1px dashed transparent' by default from inline style.
+    // We can override it with !important or just rely on specificity if we were using classes for border.
+    // But inline style wins over class.
+    // So we might need to use !important or change how border is applied.
+    // Actually, we can use outline or box-shadow.
+    &:hover {
+        // Calculate hue based on depth. 
+        // We use a CSS variable --depth which is injected.
+        // Fallback to 0 if not present.
+        --hue: calc(var(--depth, 0) * 60);
+        outline: 2px solid hsl(var(--hue), 70%, 50%);
+        z-index: 1; // Bring to front? Might cause issues with nesting.
+    }
+}
