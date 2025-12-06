@@ -40,7 +40,7 @@ export const SelectableItem = ({
 
     const renderUi = () => (
         <>
-            <div
+            {selected && <div
                 className={classes?.title}
                 style={{
                     position: 'absolute',
@@ -50,24 +50,17 @@ export const SelectableItem = ({
                     background: selected ? '#1890ff' : 'rgba(0, 0, 0, 0.5)',
                     color: 'white',
                     borderRadius: '0 0 4px 0',
-                    display: selected ? 'flex' : 'none', // Controlled by CSS hover too?
-                    // We'll use the class for hover, but inline style for positioning
                     top: 0,
                     left: 0,
                     fontSize: '10px',
-                    alignItems: 'center',
                     pointerEvents: 'auto'
                 }}
                 // onClick handled by parent wrapper now
                 data-selected={selected}
             >
-                <span style={{ marginRight: '4px' }}>{title}</span>
-                {selected && (
-                    <div style={{ position: 'absolute', top: 0, right: 0, zIndex: 100 + depth }}>
-                        <DeleteBtn onClick={onDelete} entityType="Component" />
-                    </div>
-                )}
-            </div>
+                <span>{title}</span>
+                <DeleteBtn onClick={onDelete} entityType="Component" />
+            </div>}
         </>
     );
 
@@ -78,7 +71,6 @@ export const SelectableItem = ({
             data-selected={selected}
             style={{ 
                 position: 'relative', 
-                // height: '100%', // Removed to prevent whitespace accumulation
                 border: selected ? '2px solid #1890ff' : '1px dashed transparent',
                 boxSizing: 'border-box',
                 // @ts-ignore
@@ -128,14 +120,11 @@ export const SortableItem = ({
         transform: CSS.Transform.toString(transform),
         transition,
         opacity: isDragging ? 0.3 : 1,
-        // We don't apply border here anymore, we let the component handle it or use an overlay?
-        // Actually, if we are injecting, we might want to inject the border style too?
-        // Or we can keep the border on the child via style prop merging.
     };
 
     const renderUi = () => (
         <>
-            <div
+            {selected && <div
                 className={classes?.title}
                 style={{
                     position: 'absolute',
@@ -145,12 +134,9 @@ export const SortableItem = ({
                     background: selected ? '#1890ff' : 'rgba(0, 0, 0, 0.5)',
                     color: 'white',
                     borderRadius: '0 0 4px 0',
-                    display: selected ? 'flex' : 'none', // Controlled by CSS hover too?
-                    // We'll use the class for hover, but inline style for positioning
                     top: 0,
                     left: 0,
                     fontSize: '10px',
-                    alignItems: 'center',
                     pointerEvents: 'auto'
                 }}
                 onClick={(e) => { e.stopPropagation(); onSelect(); }}
@@ -160,12 +146,8 @@ export const SortableItem = ({
                     <FontAwesomeIcon icon={faGrip} />
                 </span>
                 <span>{title}</span>
-            </div>
-            {selected && (
-                <div style={{ position: 'absolute', top: 0, right: 0, zIndex: 100 + depth }}>
-                    <DeleteBtn onClick={onDelete} entityType="Component" />
-                </div>
-            )}
+                <DeleteBtn onClick={onDelete} entityType={`${title} component`} />
+            </div>}
         </>
     );
 
@@ -192,7 +174,7 @@ export const SortableItem = ({
                     '--depth': depth
                 } as React.CSSProperties
         })
-        : children;
+        : <>a{children}</>;
 
     return child;
 };

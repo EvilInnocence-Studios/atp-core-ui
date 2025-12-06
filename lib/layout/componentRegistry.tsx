@@ -66,22 +66,15 @@ export const ComponentRegistry = {
             .filter(({ displayName }) => displayName?.toLowerCase().includes(search.toLowerCase())),
 }
 
-export const containerLayoutComponent = <P extends {children?: any}>(Container: React.ComponentType<P>) =>
-    forwardRef(({ slots, layoutId, dnd, css, ...props }: { slots?: Index<ILayoutComponent[]>, layoutId?: string, dnd?: any, css?: string } & P, ref) => {
-        console.log('containerLayoutComponent rendering', { name: Container.displayName || Container.name, hasDnd: !!dnd });
-        // We need to merge dnd.ref and forwarded ref?
-        // For simplicity, let's assume dnd.ref is what matters for now.
-        
-        // We render the Container.
-        // We inject the handle as the first child.
-        // We pass the ref to the Container.
-        
+export const containerLayoutComponent = <P extends {children?: any}>(Container: React.ComponentType<P>) => {
+    const Wrapped = forwardRef<any, { slots?: Index<ILayoutComponent[]>, layoutId?: string, dnd?: any, css?: string } & P>(({ slots, layoutId, dnd, css, ...props }, _ref) => {
+        // console.log('containerLayoutComponent rendering', { name: Container.displayName || Container.name, hasDnd: !!dnd });
         return (
             <Container 
                 {...props as unknown as P} 
                 ref={dnd?.ref}
                 onClick={(e: React.MouseEvent) => {
-                    console.log('Container onClick', { dnd });
+                    // console.log('Container onClick', { dnd });
                     if (dnd?.onSelect) {
                         e.stopPropagation();
                         dnd.onSelect();
@@ -102,3 +95,50 @@ export const containerLayoutComponent = <P extends {children?: any}>(Container: 
             </Container>
         );
     });
+    
+    // Hoist metadata
+    if ((Container as any).layoutMetadata) {
+        (Wrapped as any).layoutMetadata = (Container as any).layoutMetadata;
+    }
+    
+    return Wrapped;
+};
+
+export const leafLayoutComponent = <P extends object>(Component: React.ComponentType<P>, wrapperStyle?: React.CSSProperties) => {
+    const Wrapped = forwardRef<any, { slots?: Index<ILayoutComponent[]>, layoutId?: string, dnd?: any, css?: string, className?: string, style?: React.CSSProperties } & P>(({ slots, layoutId, dnd, css, className, style, ...props }, _ref) => {
+        if (!dnd) {
+            return (
+                <>
+                    {css && <style>{css}</style>}
+                    <Component {...props as unknown as P} />
+                </>
+            );
+        }
+
+        return (
+            <div 
+                ref={dnd?.ref}
+                className={className}
+                onClick={(e: React.MouseEvent) => {
+                    if (dnd?.onSelect) {
+                        e.stopPropagation();
+                        dnd.onSelect();
+                    }
+                    (props as any).onClick?.(e);
+                }}
+                style={{ position: 'relative', display: 'inline-block', ...wrapperStyle, ...style }}
+            >
+                {css && <style>{css}</style>}
+                {dnd?.renderUi && dnd.renderUi()}
+                <Component {...props as unknown as P} />
+            </div>
+        );
+    });
+
+    // Hoist metadata
+    if ((Component as any).layoutMetadata) {
+        (Wrapped as any).layoutMetadata = (Component as any).layoutMetadata;
+    }
+
+    return Wrapped;
+};
