@@ -18,6 +18,7 @@ export declare type RouteTable = Index<ILayoutComponent[]>;
 export declare type SlotItem = RouteTable | ILayoutComponent;
 
 export declare interface ILayoutComponent {
+    id?: string;
     component: string;
     slots?: Index<SlotItem[]>;
     context?: Index<any>;

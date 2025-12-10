@@ -2,6 +2,7 @@ import { ISettingDescriptor } from "@common/lib/setting/types";
 import { SlotRenderer } from "@core/components/SlotRenderer";
 import { Index } from "ts-functional/dist/types";
 import { ILayoutComponent } from "./layout";
+import { forwardRef } from "react";
 
 // Component Registry
 
@@ -11,22 +12,43 @@ export declare interface IComponentMetadata {
     displayName?: string;
     description?: string;
     props?: Index<ISettingDescriptor>;
+    propEditor?: (props: any, updateProps: (props: any) => void) => React.ReactNode;
 }
 
 export declare interface IComponentRegistration extends IComponentMetadata {
     name: string;
-    component: React.FC;
+    component: React.ComponentType<any>;
 }
 
 const components: Index<IComponentRegistration> = {};
 
+export const withLayoutMetadata = <P extends object>(
+    Component: React.FC<P>,
+    metadata: IComponentMetadata & { name: string }
+): React.FC<P> => {
+    (Component as any).layoutMetadata = metadata;
+    return Component;
+};
+
 export const ComponentRegistry = {
-    register: (name: string, component: React.FC<any>, metadata?: IComponentMetadata) => {
-        components[name] = {
-            name,
-            component,
-            ...metadata
-        };
+    register: (nameOrComponent: string | React.FC<any>, component?: React.FC<any>, metadata?: IComponentMetadata) => {
+        if (typeof nameOrComponent === 'string') {
+            if (!component) return;
+            components[nameOrComponent] = {
+                name: nameOrComponent,
+                component,
+                ...metadata
+            };
+        } else {
+            const Comp = nameOrComponent;
+            const meta = (Comp as any).layoutMetadata;
+            if (meta) {
+                components[meta.name] = {
+                    component: Comp,
+                    ...meta
+                };
+            }
+        }
     },
     get: (name: string): IComponentRegistration | undefined =>
         components[name],
@@ -44,8 +66,79 @@ export const ComponentRegistry = {
             .filter(({ displayName }) => displayName?.toLowerCase().includes(search.toLowerCase())),
 }
 
-export const containerLayoutComponent = <P extends {children?: any}>(Container: React.ComponentType<P>) =>
-    ({ slots, ...props }: { slots: Index<ILayoutComponent[]> } & P) => <Container {...props as unknown as P}>
-        {!!props.children && <>{props.children}</>}
-        {!!slots && <SlotRenderer slots={slots.children} />}
-    </Container>;
+export const containerLayoutComponent = <P extends {children?: any}>(Container: React.ComponentType<P>) => {
+    const Wrapped = forwardRef<any, { slots?: Index<ILayoutComponent[]>, layoutId?: string, dnd?: any, css?: string } & P>(({ slots, layoutId, dnd, css, ...props }, _ref) => {
+        // console.log('containerLayoutComponent rendering', { name: Container.displayName || Container.name, hasDnd: !!dnd });
+        return (
+            <Container 
+                {...props as unknown as P} 
+                ref={dnd?.ref}
+                onClick={(e: React.MouseEvent) => {
+                    // console.log('Container onClick', { dnd });
+                    if (dnd?.onSelect) {
+                        e.stopPropagation();
+                        dnd.onSelect();
+                    }
+                    (props as any).onClick?.(e);
+                }}
+            >
+                {css && <style>{css}</style>}
+                {dnd?.renderUi && dnd.renderUi()}
+                {!!props.children && <>{props.children}</>}
+                <SlotRenderer 
+                    slots={slots?.children} 
+                    slotName="children" 
+                    parentId={layoutId} 
+                    depth={(dnd?.depth ?? -1) + 1} 
+                    componentName={Container.displayName || Container.name}
+                />
+            </Container>
+        );
+    });
+    
+    // Hoist metadata
+    if ((Container as any).layoutMetadata) {
+        (Wrapped as any).layoutMetadata = (Container as any).layoutMetadata;
+    }
+    
+    return Wrapped;
+};
+
+export const leafLayoutComponent = <P extends object>(Component: React.ComponentType<P>, wrapperStyle?: React.CSSProperties) => {
+    const Wrapped = forwardRef<any, { slots?: Index<ILayoutComponent[]>, layoutId?: string, dnd?: any, css?: string, className?: string, style?: React.CSSProperties } & P>(({ slots, layoutId, dnd, css, className, style, ...props }, _ref) => {
+        if (!dnd) {
+            return (
+                <>
+                    {css && <style>{css}</style>}
+                    <Component {...props as unknown as P} />
+                </>
+            );
+        }
+
+        return (
+            <div 
+                ref={dnd?.ref}
+                className={className}
+                onClick={(e: React.MouseEvent) => {
+                    if (dnd?.onSelect) {
+                        e.stopPropagation();
+                        dnd.onSelect();
+                    }
+                    (props as any).onClick?.(e);
+                }}
+                style={{ position: 'relative', display: 'inline-block', ...wrapperStyle, ...style }}
+            >
+                {css && <style>{css}</style>}
+                {dnd?.renderUi && dnd.renderUi()}
+                <Component {...props as unknown as P} />
+            </div>
+        );
+    });
+
+    // Hoist metadata
+    if ((Component as any).layoutMetadata) {
+        (Wrapped as any).layoutMetadata = (Component as any).layoutMetadata;
+    }
+
+    return Wrapped;
+};
