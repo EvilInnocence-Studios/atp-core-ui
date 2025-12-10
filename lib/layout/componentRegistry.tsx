@@ -130,7 +130,7 @@ export const leafLayoutComponent = <P extends object>(Component: React.Component
             >
                 {css && <style>{css}</style>}
                 {dnd?.renderUi && dnd.renderUi()}
-                <Component {...props as unknown as P} />
+                <Component {...props as unknown as P} className={className} />
             </div>
         );
     });

@@ -26,10 +26,10 @@ voidTags.forEach(tag => {
     const Wrapper = React.forwardRef((props: React.HTMLAttributes<HTMLElement>, ref) => {
         const { children, ...rest } = props as any;
         return (
-            <div style={{ display: 'inline-block', position: 'relative' }}>
+            <>
                 {React.createElement(tag, { ...rest, ref })}
                 {children}
-            </div>
+            </>
         );
     });
     const Component = containerLayoutComponent(Wrapper);
