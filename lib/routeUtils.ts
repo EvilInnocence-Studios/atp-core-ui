@@ -1,4 +1,4 @@
-import { ILayoutComponent, RouteTable } from "./layout/layout";
+import { ILayoutComponent, RouteTable } from "@theming/lib/layout/layout";
 
 /**
  * Checks if a path matches a glob-like pattern.
@@ -59,7 +59,9 @@ const getMatchSpecificity = (pattern: string, path: string): number => {
 /**
  * Finds the components for the most specific matching route in the table.
  */
-export const findMatchingRoute = (table: RouteTable, path: string): ILayoutComponent[] | undefined => {
+export const findMatchingRoute = (path: string, table?: RouteTable): ILayoutComponent[] | undefined => {
+    if (!table) return undefined;
+    
     const patterns = Object.keys(table);
 
     // Map patterns to their specificity score for the current path

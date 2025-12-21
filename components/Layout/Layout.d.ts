@@ -1,7 +1,7 @@
 import { ILayoutComponent, ITheme } from "@core/lib/layout/layout";
 
 export declare interface ILayoutProps {
-    layout: ILayoutComponent;
+
 }
 
 // What gets passed into the component from the parent as attributes

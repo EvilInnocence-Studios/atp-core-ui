@@ -15,6 +15,7 @@ export declare interface IUpdater<Entity> {
     updateString: EntityUpdater<Entity, string>;
     updateToggle: EntityUpdater<Entity, boolean>;
     updateNumber: EntityUpdater<Entity, number | null>;
+    updateObject: EntityUpdater<Entity, any>;
     history: IEditHistory<Entity>;
     save: () => void;
     refresh: () => void;
@@ -89,6 +90,7 @@ export const useUpdater = <Entity extends {}>(
         updateString: updateEntity<string>,
         updateToggle: updateEntity<boolean>,
         updateNumber: updateEntity<number>,
+        updateObject: updateEntity<any>,
         history, save, UpdateButtons,
         refresh,
     };

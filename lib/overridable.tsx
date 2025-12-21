@@ -1,6 +1,6 @@
 import { Func } from "ts-functional/dist/types";
 
-type ComponentLike<InputProps> = Func<InputProps, JSX.Element | null>;
+type ComponentLike<InputProps> = Func<InputProps, React.ReactNode>;
 interface IOriginal {
 	Original: () => JSX.Element | null;
 }

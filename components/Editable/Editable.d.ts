@@ -10,6 +10,7 @@ export declare interface IEditableInputProps {
     onChange: Func<string, void>;
     placeholder?: string;
     textArea?: boolean;
+    captureTab?: boolean;
     classes?: any;
 }
 
