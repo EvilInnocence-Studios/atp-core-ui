@@ -1,1 +1,29 @@
 @use "@styles/globals.module.scss";
+
+.contentPlaceholder {
+    border: 2px dashed rgba(var(--body-color-rgb), 0.2);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-xl);
+    text-align: center;
+    background-color: rgba(var(--body-color-rgb), 0.05);
+    margin: var(--spacing-md);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+    color: var(--text-muted);
+
+    h3 {
+        margin-top: 0;
+        margin-bottom: var(--spacing-sm);
+        color: var(--text-main);
+    }
+
+    p {
+        max-width: 400px;
+        margin: 0;
+        font-size: 0.9em;
+        line-height: 1.5;
+    }
+}

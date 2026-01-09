@@ -1,5 +1,5 @@
 export declare interface IContentProps {
-
+    isEditing: boolean;
 }
 
 // What gets passed into the component from the parent as attributes
