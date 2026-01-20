@@ -11,6 +11,7 @@ export declare interface IScrollerInputProps<T> {
     componentProps?: React.ComponentProps<any>;
     className?: string;
     classes?: any;
+    css?: string;
 }
 
 export type ScrollerProps<T> = IScrollerInputProps<T> & IScrollerProps<T>;
