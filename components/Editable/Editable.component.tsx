@@ -9,7 +9,7 @@ import { stopProp } from "@core/lib/util";
 import { overridable } from "@core/lib/overridable";
 
 export const EditableComponent = overridable(({
-    value, onChange, placeholder, textArea, captureTab, classes = styles
+    value, onChange, placeholder, textArea, captureTab, bordered, classes = styles
 }: EditableProps) => {
     const [curValue, setCurValue] = useState(value);
 
@@ -45,7 +45,7 @@ export const EditableComponent = overridable(({
 
     return <Component
         value={curValue}
-        className={clsx([classes.editable, hasChanges && classes.hasChanges])}
+        className={clsx([classes.editable, hasChanges && classes.hasChanges, bordered && classes.bordered])}
         onChange={onInputChange(setCurValue)}
         onKeyDown={handleKeyDown}
         {...stopProp}

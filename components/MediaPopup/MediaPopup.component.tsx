@@ -6,7 +6,7 @@ import clsx from "clsx";
 import { overridable } from "@core/lib/overridable";
 
 export const MediaPopupComponent = overridable(({ media, getId, render, isOpen, open, close, selectedImage, vertical, classes = styles }: MediaPopupProps) => <>
-    <Modal open={isOpen} onClose={close} onCancel={close} footer={null}>
+    <Modal open={isOpen} onOk={close} onCancel={close} footer={null}>
         <div className={classes.switcher}>
             <MediaSwitcher
                 media={media}

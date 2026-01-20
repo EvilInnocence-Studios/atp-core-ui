@@ -1,0 +1,7 @@
+@use "@styles/globals.module.scss";
+
+.tabs {
+    :global(.ant-tabs-tab) {
+        padding: 0;
+    }
+}

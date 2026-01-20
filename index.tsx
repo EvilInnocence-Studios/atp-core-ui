@@ -8,4 +8,4 @@ export const module: IModule = {
     settings: coreSettings,
 };
 
-ComponentRegistry.register("Content", Content, { category: "Layouts", displayName: "Content" });
+ComponentRegistry.register("Content", Content, { category: "Content", displayName: "Page Content" });

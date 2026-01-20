@@ -11,6 +11,7 @@ export declare interface IEditableInputProps {
     placeholder?: string;
     textArea?: boolean;
     captureTab?: boolean;
+    bordered?: boolean;
     classes?: any;
 }
 

@@ -1,9 +1,10 @@
+import { ReactNode } from "react";
 import { Func } from "ts-functional/dist/types";
 
 // --- Define renderer option plugins: (props:P) => JSX.Element | null --- //
 // --- Ex. export const myPlugins = rendererPlugins<MyProps>(); --- //
 
-type Renderer<P> = Func<P, JSX.Element | null>;
+type Renderer<P> = Func<P, JSX.Element | ReactNode | null>;
 
 export interface IRendererOptionPlugin<P> {
     priority?: number;

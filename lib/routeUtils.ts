@@ -1,4 +1,5 @@
-import { ILayoutComponent, RouteTable } from "@theming/lib/layout/layout";
+import { ILayoutComponent } from "@theming/lib/layout/layout";
+import { Index } from "ts-functional/dist/types";
 
 /**
  * Checks if a path matches a glob-like pattern.
@@ -59,7 +60,7 @@ const getMatchSpecificity = (pattern: string, path: string): number => {
 /**
  * Finds the components for the most specific matching route in the table.
  */
-export const findMatchingRoute = (path: string, table?: RouteTable): ILayoutComponent[] | undefined => {
+export const findMatchingRoute = (path: string, table?: Index<ILayoutComponent[]>): ILayoutComponent[] | undefined => {
     if (!table) return undefined;
     
     const patterns = Object.keys(table);
@@ -76,8 +77,4 @@ export const findMatchingRoute = (path: string, table?: RouteTable): ILayoutComp
 
     // Return the best match
     return table[matches[0].pattern];
-};
-
-export const isRouteTable = (item: RouteTable | ILayoutComponent): item is RouteTable => {
-    return !('component' in item);
 };
