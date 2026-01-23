@@ -60,10 +60,10 @@ const getMatchSpecificity = (pattern: string, path: string): number => {
 /**
  * Finds the components for the most specific matching route in the table.
  */
-export const findMatchingRoute = (path: string, table?: Index<ILayoutComponent[]>): ILayoutComponent[] | undefined => {
+export const findMatchingRoute = (path: string, table?: Index<string>): string | undefined => {
     if (!table) return undefined;
     
-    const patterns = Object.keys(table);
+    const patterns = Object.values(table);
 
     // Map patterns to their specificity score for the current path
     const matches = patterns
@@ -76,5 +76,5 @@ export const findMatchingRoute = (path: string, table?: Index<ILayoutComponent[]
     matches.sort((a, b) => b.score - a.score);
 
     // Return the best match
-    return table[matches[0].pattern];
+    return Object.keys(table).find(key => table[key] === matches[0].pattern);
 };
