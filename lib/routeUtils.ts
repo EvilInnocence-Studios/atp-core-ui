@@ -1,4 +1,3 @@
-import { ILayoutComponent } from "@theming/lib/layout/layout";
 import { Index } from "ts-functional/dist/types";
 
 /**
