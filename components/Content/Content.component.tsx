@@ -1,7 +1,7 @@
 import { Page } from "@common/components/Page";
 import { config } from "@config";
 import { withRoute } from "@core/lib/withRoute";
-import { Route, Routes } from "react-router";
+import { Route, Routes } from "react-router-dom";
 import { ContentProps } from "./Content.d";
 import { overridable } from "@core/lib/overridable";
 import styles from "./Content.module.scss";
