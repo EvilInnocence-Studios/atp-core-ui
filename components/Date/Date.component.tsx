@@ -28,7 +28,7 @@ const getOrdinal = (num: number) => num % 100 > 10 && num % 100 < 14 ? 'th' : sw
     default: () => 'th'
 });
 
-export const DateComponent = overridable(({ date, classes = styles }: DateProps) => {
+export const DateComponent = overridable(({ date, classes = styles, noWeekday = false }: DateProps) => {
     if (!date) return <span className={classes.noDate}>No Date</span>;
     const parts = date.split('-');
     const year = parseInt(parts[0], 10);
@@ -37,5 +37,5 @@ export const DateComponent = overridable(({ date, classes = styles }: DateProps)
     const monthName = months[month - 1];
     const weekDay = getWeekDay(year, month, day);
     const ordinal = getOrdinal(day);
-    return <span>{weekDay}, {monthName} {day}<sup>{ordinal}</sup>, {year}</span>;
+    return <span>{noWeekday ? '' : `${weekDay}, `}{monthName} {day}<sup>{ordinal}</sup>, {year}</span>;
 });
