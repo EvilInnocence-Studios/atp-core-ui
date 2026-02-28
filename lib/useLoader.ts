@@ -20,13 +20,19 @@ export const useLoader = () => {
         });
     };
 
-    return {isLoading, start, stop};
+    const cancel = () => {
+        setInvocationCount(0);
+        setIsLoading(false);
+    }
+
+    return {isLoading, start, stop, cancel};
 }
 
 // LoaderAsync is a type that is a function that also has a single property isLoading of type boolean
 export type LoaderAsync = {
     (f: () => Promise<any>): void;
     isLoading: boolean;
+    cancel: () => void;
 }
 
 export const useLoaderAsync = ():LoaderAsync => {
@@ -49,6 +55,11 @@ export const useLoaderAsync = ():LoaderAsync => {
         });
     };
 
+    const cancel = () => {
+        setInvocationCount(0);
+        setIsLoading(false);
+    }
+
     const loader = async <T>(f: () => Promise<T>) => {
         start();
         try {
@@ -59,6 +70,7 @@ export const useLoaderAsync = ():LoaderAsync => {
     };
 
     loader.isLoading = isLoading;
+    loader.cancel = cancel;
 
     return loader;
 }

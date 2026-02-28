@@ -7,6 +7,7 @@ export declare interface IDeleteBtnInputProps {
     onClick: () => void;
     entityType: string;
     classes?: any;
+    message?: string;
 }
 
 export type DeleteBtnProps = IDeleteBtnInputProps & IDeleteBtnProps;
