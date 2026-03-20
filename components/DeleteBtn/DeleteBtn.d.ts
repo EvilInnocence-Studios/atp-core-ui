@@ -8,6 +8,7 @@ export declare interface IDeleteBtnInputProps {
     entityType: string;
     classes?: any;
     message?: string;
+    label?: string;
 }
 
 export type DeleteBtnProps = IDeleteBtnInputProps & IDeleteBtnProps;
