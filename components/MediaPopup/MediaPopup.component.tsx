@@ -1,9 +1,9 @@
-import { Modal } from "antd";
-import { MediaPopupProps } from "./MediaPopup.d";
-import styles from './MediaPopup.module.scss';
-import { MediaSwitcher } from "../MediaSwitcher";
-import clsx from "clsx";
 import { overridable } from "@core/lib/overridable";
+import { Modal } from "antd";
+import clsx from "clsx";
+import { MediaSwitcher } from "../MediaSwitcher";
+import { MediaPopupProps } from "./MediaPopup.d";
+import styles from "./MediaPopup.module.scss";
 
 export const MediaPopupComponent = overridable(({ media, getId, render, isOpen, open, close, selectedImage, vertical, classes = styles }: MediaPopupProps) => <>
     <Modal open={isOpen} onOk={close} onCancel={close} footer={null}>

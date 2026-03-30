@@ -1,7 +1,6 @@
 @use "@styles/globals.module.scss";
 
 .mediaList {
-    max-width: var(--comicArchiveWidth);
     margin: auto;
     text-align: center;
     .mediaItem {
@@ -16,9 +15,14 @@
         }
     }
     &.vertical {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+        align-items: start;
         .mediaItem {
-            max-width: calc(50% - var(--paddingSmall) * 2);
-            margin: var(--padding) var(--paddingSmall);
+            display: block;
+            max-width: 100%;
+            margin: 0;
         }
     }
 }
