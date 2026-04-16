@@ -12,6 +12,7 @@ export declare interface IMediaPopupInputProps<T> {
     render: (item: T) => JSX.Element;
     vertical?: boolean;
     classes?: any;
+    className?: string;
 }
 
 export type MediaPopupProps = IMediaPopupInputProps<T> & IMediaPopupProps;
