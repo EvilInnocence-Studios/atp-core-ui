@@ -20,7 +20,8 @@ export const YouTube = withLayoutMetadata(
     {
         name: "YouTube",
         displayName: "YouTube",
-        category: "Media",
+        category: "Content",
+        subCategory: "Media",
         description: "",
         icon,
         getSlotDisplayName: (slotName, props) => props[slotName] || slotName,

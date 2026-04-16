@@ -9,5 +9,5 @@ export const module: IModule = {
     settings: coreSettings,
 };
 
-ComponentRegistry.register("Content", Content, { category: "Content", displayName: "Page Content" });
+ComponentRegistry.register("Content", Content, { category: "Layout", subCategory: "Routing", displayName: "Page Content" });
 ComponentRegistry.register(YouTube);
