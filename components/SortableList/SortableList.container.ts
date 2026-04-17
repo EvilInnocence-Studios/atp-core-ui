@@ -4,8 +4,8 @@ import { createInjector, inject, mergeProps } from "unstateless";
 import { SortableListComponent } from "./SortableList.component";
 import { ISortableListInputProps, ISortableListProps, SortableListProps } from "./SortableList.d";
 
-const injectSortableListProps = <T, Extra = {}>() => createInjector(
-    ({items, sort}:ISortableListInputProps<T, Extra>):ISortableListProps<T> => {
+const injectSortableListProps = createInjector(
+    ({items, sort}:ISortableListInputProps<any, any>):ISortableListProps<any> => {
         const sortItems = (e:{active:{id:any}, over:{id:any} | null}) => {
             const {active, over} = e;
             const [linkId, _oldIndex] = active.id.split(':');
@@ -25,15 +25,15 @@ const injectSortableListProps = <T, Extra = {}>() => createInjector(
     }
 );
 
-const connect = <T, Extra = unknown>() =>
-    inject<ISortableListInputProps<T, Extra>, SortableListProps<T, Extra>>(
-        mergeProps(
-            injectSortableListProps<T, Extra>(),
-        ),
-    );
+const connect = inject<ISortableListInputProps<any, any>, SortableListProps<any, any>>(
+    mergeProps(
+        injectSortableListProps,
+    ),
+);
 export const connectSortableList = connect;
 
+const Connected = overridable<ISortableListInputProps<any, any>>(connect(SortableListComponent as React.ComponentType<SortableListProps<any, any>>));
+
 export function SortableList<T, Extra = unknown>(props: ISortableListInputProps<T, Extra>) {
-    const Connected = overridable<ISortableListInputProps<T, Extra>>(connect<T, Extra>()(SortableListComponent as React.ComponentType<SortableListProps<T, Extra>>));
-    return React.createElement(Connected, props);
+    return React.createElement(Connected, props as any);
 }
