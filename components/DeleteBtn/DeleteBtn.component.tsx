@@ -6,15 +6,15 @@ import { DeleteBtnProps } from "./DeleteBtn";
 import styles from './DeleteBtn.module.scss';
 import { overridable } from "@core/lib/overridable";
 
-export const DeleteBtnComponent = overridable(({ onClick, entityType, message, label, classes = styles }: DeleteBtnProps) =>
+export const DeleteBtnComponent = overridable(({ onClick, entityType, message, label, type, classes = styles }: DeleteBtnProps) =>
     <Popconfirm
         onPopupClick={e => { e.stopPropagation(); }}
         onConfirm={onClick}
         title={message || `Are you sure you want to delete this ${entityType}`}
     >
-        <Button type="link" className={clsx([classes.deleteBtn, "deleteBtn"])} onClick={e => { e.stopPropagation(); }}>
+        <Button danger type={type || "link"} className={clsx([classes.deleteBtn, "deleteBtn"])} onClick={e => { e.stopPropagation(); }}>
             <Typography.Text type="danger">
-                {label} <FontAwesomeIcon icon={faTrashCan} />
+                <FontAwesomeIcon icon={faTrashCan} /> {label}
             </Typography.Text>
         </Button>
     </Popconfirm>

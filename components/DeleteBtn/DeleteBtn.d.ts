@@ -9,6 +9,7 @@ export declare interface IDeleteBtnInputProps {
     classes?: any;
     message?: string;
     label?: string;
+    type?: "link" | "default" | "text";
 }
 
 export type DeleteBtnProps = IDeleteBtnInputProps & IDeleteBtnProps;

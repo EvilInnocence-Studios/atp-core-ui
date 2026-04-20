@@ -12,6 +12,7 @@ export declare type EntityUpdater<E, T> = (field: keyof E) => (value: T) => void
 
 export declare interface IUpdater<Entity> {
     isLoading: boolean;
+    dirty: boolean;
     updateString: EntityUpdater<Entity, string>;
     updateToggle: EntityUpdater<Entity, boolean>;
     updateNumber: EntityUpdater<Entity, number | null>;
@@ -87,6 +88,7 @@ export const useUpdater = <Entity extends {}>(
 
     return {
         isLoading: loader.isLoading,
+        dirty: dirty.isset,
         updateString: updateEntity<string>,
         updateToggle: updateEntity<boolean>,
         updateNumber: updateEntity<number>,
