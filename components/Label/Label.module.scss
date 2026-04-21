@@ -2,19 +2,18 @@
 
 .label {
     display: flex;
-    border: solid 1px var(--borderColor);
-    border-radius: var(--borderRadiusLarge);
+    border: solid 1px #444444;
+    border-radius: 16px;
     padding: 0;
     > span {
         flex-grow: 1;
         padding: 0;
         > * {
-            padding: var(--paddingXS) var(--paddingSmall);
+            padding: 8px 16px;
             border-radius: 0;
-            border-top-right-radius: var(--borderRadiusLarge);
-            border-bottom-right-radius: var(--borderRadiusLarge);
+            border-top-right-radius: 16px;
+            border-bottom-right-radius: 16px;
             border: none;
-            background-color: var(--bgLightColor);
             width: 100%;
         }
         :global(.ant-select) {
@@ -32,11 +31,10 @@
     }
     > label {
         display: inline-block;
-        padding: var(--paddingXS) var(--paddingSmall);
-        border-radius: var(--borderRadiusLarge);
+        padding: 8px 16px;
+        border-radius: 16px;
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
-        border-right: solid 1px var(--borderColor);
-        background-color: var(--bgLightColor);
+        border-right: solid 1px #444444;
     }
 }

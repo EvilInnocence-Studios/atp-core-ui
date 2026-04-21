@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faForwardStep, faGripVertical } from "@fortawesome/free-solid-svg-icons";
 import clsx from "clsx";
 import { overridable } from "@core/lib/overridable";
+import { Card } from "antd";
 
 export const ListItem = overridable(({ item, index, moveToTop, moveToBottom, getId, getListId, children, className, direction, classes = styles }: any) => {
     const { attributes, listeners, setNodeRef, setActivatorNodeRef, transform, transition } = useSortable({
@@ -16,7 +17,7 @@ export const ListItem = overridable(({ item, index, moveToTop, moveToBottom, get
         transition
     } : undefined;
 
-    return <div className={clsx([classes.link, className, classes[direction]])} key={getId(item)} style={style} ref={setNodeRef} {...attributes}>
+    return <Card className={clsx([classes.link, className, classes[direction]])} key={getId(item)} style={style} ref={setNodeRef} {...attributes}>
         <span className={classes.icon} ref={setActivatorNodeRef} {...listeners}>
             <FontAwesomeIcon icon={faGripVertical} />
         </span>
@@ -39,7 +40,7 @@ export const ListItem = overridable(({ item, index, moveToTop, moveToBottom, get
         <span className={classes.content}>
             {children}
         </span>
-    </div>;
+    </Card>;
 });
 
 export const SortableListComponent = <T extends any, Extra = {}>({
