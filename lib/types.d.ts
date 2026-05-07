@@ -3,6 +3,9 @@ import request from "superagent";
 import { Index } from "ts-functional/dist/types";
 
 export declare type IConfig = {
+    public: {
+        baseUrl: string,
+    },
     api: {
         baseUrl: string;
     };
