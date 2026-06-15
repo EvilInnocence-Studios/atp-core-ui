@@ -2,7 +2,7 @@
 
 .label {
     display: flex;
-    border: solid 1px #444444;
+    border: solid 1px var(--labelBorderColor, var(--borderColor, #444444));
     border-radius: 16px;
     padding: 0;
     > span {
@@ -35,6 +35,6 @@
         border-radius: 16px;
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
-        border-right: solid 1px #444444;
+        border-right: solid 1px var(--labelBorderColor, var(--borderColor, #444444));
     }
 }
