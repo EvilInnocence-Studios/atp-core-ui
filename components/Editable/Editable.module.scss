@@ -11,6 +11,6 @@
     margin: 0;
     border: none;
     &.hasChanges {
-        background-color: #888800 !important;
+        background-color: var(--editableHasChanges, #888800) !important;
     }
 }
