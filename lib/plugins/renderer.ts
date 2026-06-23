@@ -1,9 +1,11 @@
 import { Func } from "ts-functional/dist/types";
 
-// --- Define renderer plugins: (props:P) => JSX.Element | null --- //
+import React from "react";
+
+// --- Define renderer plugins: (props:P) => React.ReactNode --- //
 // --- Ex. export const myPlugins = rendererPlugins<MyProps>(); --- //
 
-type Renderer<P> = Func<P, JSX.Element | null>;
+type Renderer<P> = Func<P, React.ReactNode>;
 
 interface IRendererPlugin<P> {
     priority: number;
@@ -24,7 +26,7 @@ const render = <P>(slots: RendererPluginSlots<P>) => (props: P) => {
             acc.push(rendered);
         }
         return acc;
-    }, [] as JSX.Element[]);
+    }, [] as React.ReactNode[]);
 }
 
 export const rendererPlugins = <P>() => {
@@ -36,3 +38,14 @@ export const rendererPlugins = <P>() => {
 }
 
 // --- Define renderer plugins end --- //
+
+const registry: Record<string, any> = {};
+
+export const RendererRegistry = {
+    get: <P>(name: string) => {
+        if (!registry[name]) {
+            registry[name] = rendererPlugins<P>();
+        }
+        return registry[name] as ReturnType<typeof rendererPlugins<P>>;
+    }
+};
