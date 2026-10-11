@@ -12,6 +12,7 @@
     overflow: hidden;
     height: 200px;
     padding-bottom: 16px;
+
     &::after {
         content: "";
         position: absolute;
@@ -20,8 +21,9 @@
         width: 32px;
         height: 100%;
         z-index: 9;
-        
+        pointer-events: none;
     }
+
     &::before {
         content: "";
         position: absolute;
@@ -30,8 +32,9 @@
         width: 32px;
         height: 100%;
         z-index: 9;
-        
+        pointer-events: none;
     }
+
     &.canScrollLeft {
         &::before {
             box-shadow: inset 15px 0 15px -5px rgba(0, 0, 0, 1);
@@ -44,19 +47,22 @@
         }
     }
 
-    
     .scrollerList {
         position: absolute;
-        overflow-x: hidden;
-        overflow-y: hidden;
-        white-space: nowrap;
-        > * {
+        top: 0;
+        left: 0;
+        display: flex;
+        flex-direction: row;
+        gap: 16px;
+        width: max-content;
+        padding: 16px;
+
+        >* {
+            flex-shrink: 0;
             width: 200px;
         }
-        * {
-            white-space: normal;
-        }
     }
+
     .arrow {
         position: absolute;
         top: 50%;
@@ -64,10 +70,14 @@
         width: 6rem;
         height: 6rem;
         z-index: 999;
-        filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .7));
+        cursor: pointer;
+        user-select: none;
+        filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, .7));
+
         &.left {
             left: 0;
         }
+
         &.right {
             right: 0;
         }

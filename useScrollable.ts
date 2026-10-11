@@ -72,6 +72,7 @@ export const useScrollable = (speed: number = 1):IScrollable => {
             }
         };
         const interval = setInterval(scroll, 10);
+        scroll();
         setStop(() => () => clearInterval(interval));
     };    
 
