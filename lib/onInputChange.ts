@@ -30,8 +30,6 @@ export const onNumberChange  = (onChange:Func<number, void>) => (value:string) =
     }
 }
 
-export const onDateChange = (onChange:Func<string, void>) => (date:dayjs.Dayjs) => {
-    if (date) {
-        onChange(date.format("YYYY-MM-DD"));
-    }
+export const onDateChange = (onChange:Func<string, void>) => (date:dayjs.Dayjs | null) => {
+    onChange(date ? date.format("YYYY-MM-DD") : "");
 }

@@ -51,9 +51,8 @@ export const useUpdater = <Entity extends {}>(
 
     const updateEntity = <FieldType extends any>(field:keyof Entity) => (value?:FieldType | null) => {
         if(typeof value !== "undefined") {
-            const oldEntity = history.entity;
-            (oldEntity as any)[field] = value;
-            history.update(oldEntity);
+            const newEntity = { ...history.entity, [field]: value };
+            history.update(newEntity);
             if(saveMode === "automatic") {
                 save();
             } else {
