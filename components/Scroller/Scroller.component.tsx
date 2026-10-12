@@ -9,7 +9,13 @@ export const ScrollerComponent = <T extends {}>({ title, items, scroll, getId, C
     <div className={classes.scrollerContainer}>
         <h2 className={classes.scrollerTitle}>{title}</h2>
         <div
-            className={clsx([classes.scroller, scroll.x.canScrollLeft && classes.canScrollLeft, scroll.x.canScrollRight && classes.canScrollRight])}
+            className={clsx([
+                classes.scroller,
+                "scroller",
+                className,
+                scroll.x.canScrollLeft && classes.canScrollLeft,
+                scroll.x.canScrollRight && classes.canScrollRight,
+            ])}
             ref={scroll.containerRef}
         >
             <FontAwesomeIcon
@@ -32,7 +38,7 @@ export const ScrollerComponent = <T extends {}>({ title, items, scroll, getId, C
                 onMouseLeave={scroll.stop}
                 style={{ visibility: scroll.x.canScrollRight ? 'visible' : 'hidden' }}
             />
-            <div className={clsx([classes.scrollerList, className])} style={{ left: scroll.x.offset }} ref={scroll.ref}>
+            <div className={clsx([classes.scrollerList, "scrollerList"])} style={{ left: scroll.x.offset }} ref={scroll.ref}>
                 {items.map((item) => <Component {...componentProps} item={item} key={getId(item)} />)}
             </div>
         </div>
